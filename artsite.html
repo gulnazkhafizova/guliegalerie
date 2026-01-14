@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ru, eng">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My gallery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Dancing+Script:wght@400..700&family=Fleur+De+Leah&family=Just+Me+Again+Down+Here&family=Rouge+Script&family=Send+Flowers&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-icons">
+            <a href="https://www.instagram.com/gulie_bulie" target="_blank" class="social-icon instagram-icon" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+            </a>
+
+            <button class="social-icon search-icon" onclick="toggleSearch()" aria-label="Search">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div id="searchBar" class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search artworks..." onkeyup="performSearch(event)">
+            <button class="search-close" onclick="toggleSearch()">&times;</button>
+        </div>
+
+        <h1>Gulnaz Khafizova</h1>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showSection('home'); return false;">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Portfolio ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="showSection('acrylic'); return false;">Acrylic</a>
+                        <a href="#" onclick="showSection('watercolor'); return false;">Watercolor</a>
+                        <a href="#" onclick="showSection('oil'); return false;">Oil</a>
+                        <hr style="margin: 5px 0; border: none; border-top: 1px solid #e0e0e0;">
+                        <a href="#" onclick="showSection('collection01'); return false;">Collection Not what it seems</a>
+                        <!-- Временно скрыто -->
+                        <!-- <a href="#" onclick="showSection('collection02'); return false;">Collection 02</a> -->
+                    </div>
+                </li>
+                <li><a href="#" onclick="showSection('store'); return false;">Store</a></li>
+                <li><a href="#" onclick="showSection('commissions'); return false;">Art Commissions</a></li>
+                <li><a href="#" onclick="openContactModal(); return false;">Contact</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">About ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="openAboutModal(); return false;">About</a>
+                        <!-- Временно скрыто -->
+                        <!-- <a href="#" onclick="showSection('support'); return false;">Support</a> -->
+                    </div>
+                </li>
+                <li><a href="#" onclick="openCart(); return false;" class="cart-link">
+                    Cart <span id="cartCount" class="cart-count">0</span>
+                </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="content-section active">
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="art-piece" onclick="openModal(1)">
+                        <img src="images/Birches.jpg" alt="Birches">
+                    </div>
+                    <div class="art-piece" onclick="openModal(2)">
+                        <img src="images/fresh_air.jpg" alt="Fresh air">
+                    </div>
+                    <div class="art-piece" onclick="openModal(3)">
+                        <img src="images/honey_fields_gift.jpg" alt="Bouquet">
+                    </div>
+                    <div class="art-piece" onclick="openModal(4)">
+                        <img src="images/horses.jpeg" alt="Horses">
+                    </div>
+                    <div class="art-piece" onclick="openModal(5)">
+                        <img src="images/roses.jpeg" alt="Roses">
+                    </div>
+                    <div class="art-piece" onclick="openModal(6)">
+                        <img src="images/Tangerines.jpg" alt="Tangerines">
+                    </div>
+                    <div class="art-piece" onclick="openModal(10)">
+                        <img src="images/Lilies.jpg" alt="Lilies">
+                    </div>
+                    <div class="art-piece" onclick="openModal(11)">
+                        <img src="images/SriLanka.jpg" alt="Sri Lanka">
+                    </div>
+                    <div class="art-piece" onclick="openModal(12)">
+                        <img src="images/MarbleCanyonKarelia.jpg" alt="Marble Canyon, Karelia">
+                    </div>
+                </div>
+                <button class="carousel-btn prev-btn" onclick="moveCarousel(-1)">&#10094;</button>
+                <button class="carousel-btn next-btn" onclick="moveCarousel(1)">&#10095;</button>
+            </div>
+        </section>
+
+        <!-- Portfolio: Acrylic Section -->
+        <section id="acrylic" class="content-section">
+            <h2>Acrylic Paintings</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" onclick="openModal(1)">
+                    <img src="images/Birches.jpg" alt="Birches">
+                </div>
+                <div class="portfolio-item" onclick="openModal(10)">
+                    <img src="images/Lilies.jpg" alt="Lilies">
+                </div>
+                <div class="portfolio-item" onclick="openModal(11)">
+                    <img src="images/SriLanka.jpg" alt="SriLanka">
+                </div>
+                <div class="portfolio-item" onclick="openModal(12)">
+                    <img src="images/MarbleCanyonKarelia.jpg" alt="Karelia">
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio: Watercolor Section -->
+        <section id="watercolor" class="content-section">
+            <h2>Watercolor Paintings</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 20px;">Examples of watercolor work (not for sale)</p>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="images/Deep_in_the_forest.JPG" alt="Forest">
+                    <p style="text-align: center; margin-top: 10px;">Deep in the Forest</p>
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/lotus.JPG" alt="lotus">
+                    <p style="text-align: center; margin-top: 10px;">Lotus</p>
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/mosaic.JPG" alt="Mosaic">
+                    <p style="text-align: center; margin-top: 10px;">Mosaic</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio: Oil Section -->
+        <section id="oil" class="content-section">
+            <h2>Oil Paintings</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" onclick="openModal(6)">
+                    <img src="images/Tangerines.jpg" alt="Tangerines">
+                </div>
+                <div class="portfolio-item" onclick="openModal(2)">
+                    <img src="images/fresh_air.jpg" alt="Fresh air">
+                </div>
+                <div class="portfolio-item" onclick="openModal(3)">
+                    <img src="images/honey_fields_gift.jpg" alt="Bouquet">
+                </div>
+                <div class="portfolio-item" onclick="openModal(4)">
+                    <img src="images/horses.jpeg" alt="Horses">
+                </div>
+                <div class="portfolio-item" onclick="openModal(5)">
+                    <img src="images/roses.jpeg" alt="Roses">
+                </div>
+            </div>
+        </section>
+
+        <!-- Collection 01 Section -->
+        <section id="collection01" class="content-section">
+            <h2>Collection Not what it seems</h2>
+            <p class="collection-description">According to the author's idea, the observer can independently interpret the plot taking place in the painting.</p>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" onclick="openModal(13)">
+                    <img src="images/01.jpg" alt="Meat">
+                </div>
+                <div class="portfolio-item" onclick="openModal(14)">
+                    <img src="images/02.jpg" alt="Fish eye">
+                </div>
+            </div>
+        </section>
+
+        <!-- Временно скрыто -->
+        <!-- Collection 02 Section
+        <section id="collection02" class="content-section">
+            <h2>Collection 02</h2>
+            <p class="collection-description">A curated collection of selected works</p>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" onclick="openModal(15)">
+                    <img src="images/.jpg" alt="Fresh air">
+                </div>
+                <div class="portfolio-item" onclick="openModal(16)">
+                    <img src="images/.jpg" alt="Sri Lanka">
+                </div>
+            </div>
+        </section>
+        -->
+
+        <!-- Store Section -->
+        <section id="store" class="content-section">
+            <h2>Store</h2>
+            <div class="store-grid">
+                <div class="store-item" onclick="openModal(1)">
+                    <img src="images/Birches.jpg" alt="Birches">
+                    <h3>Birches</h3>
+                    <p class="store-price">355$</p>
+                </div>
+                <div class="store-item" onclick="openModal(2)">
+                    <img src="images/fresh_air.jpg" alt="Fresh air">
+                    <h3>Fresh Air</h3>
+                    <p class="store-price">250$</p>
+                </div>
+                <div class="store-item" onclick="openModal(3)">
+                    <img src="images/honey_fields_gift.jpg" alt="Bouquet">
+                    <h3>Bouquet</h3>
+                    <p class="store-price">130$</p>
+                </div>
+                <div class="store-item" onclick="openModal(4)">
+                    <img src="images/horses.jpeg" alt="Horses">
+                    <h3>Horses</h3>
+                    <p class="store-price">550$</p>
+                </div>
+                <div class="store-item" onclick="openModal(5)">
+                    <img src="images/roses.jpeg" alt="Roses">
+                    <h3>Roses</h3>
+                    <p class="store-price">250$</p>
+                </div>
+                <div class="store-item" onclick="openModal(6)">
+                    <img src="images/Tangerines.jpg" alt="Tangerines">
+                    <h3>Tangerines</h3>
+                    <p class="store-price">150$</p>
+                </div>
+                <div class="store-item" onclick="openModal(10)">
+                    <img src="images/Lilies.jpg" alt="Lilies">
+                    <h3>Lilies</h3>
+                    <p class="store-price">200$</p>
+                </div>
+                <div class="store-item" onclick="openModal(11)">
+                    <img src="images/SriLanka.jpg" alt="SriLanka">
+                    <h3>Sri Lanka</h3>
+                    <p class="store-price">130$</p>
+                </div>
+                <div class="store-item" onclick="openModal(12)">
+                    <img src="images/MarbleCanyonKarelia.jpg" alt="Karelia">
+                    <h3>Karelia</h3>
+                    <p class="store-price">200$</p>
+                </div>
+                <div class="store-item" onclick="openModal(13)">
+                    <img src="images/01.jpg" alt="Meat">
+                    <h3>01</h3>
+                    <p class="store-price">300$</p>
+                </div>
+                <div class="store-item" onclick="openModal(14)">
+                    <img src="images/02.jpg" alt="Fish eye">
+                    <h3>02</h3>
+                    <p class="store-price">300$</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Art Commissions Section -->
+        <section id="commissions" class="content-section">
+            <h2>Art Commissions</h2>
+            <div class="commissions-content">
+                <div class="commissions-images">
+                    <img src="images/Birches.jpg" alt="Commission example">
+                    <img src="images/Lilies.jpg" alt="Commission example">
+                    <img src="images/horses.jpeg" alt="Commission example">
+                </div>
+                <div class="commissions-text">
+                    <p>I'm delighted to offer custom art commissions! Whether you're looking for a personalized portrait, landscape, or abstract piece, I work closely with you to bring your vision to life.</p>
+
+                    <h3>What I Offer:</h3>
+                    <ul>
+                        <li>Custom portraits (people, pets, family)</li>
+                        <li>Landscape and nature scenes</li>
+                        <li>Abstract and contemporary art</li>
+                        <li>Still life compositions</li>
+                        <li>Various mediums: Acrylic, Watercolor, Oil</li>
+                    </ul>
+
+                    <h3>Process & Timeline:</h3>
+                    <p>The typical commission takes 2-4 weeks to complete, depending on size and complexity. I'll keep you updated throughout the creative process.</p>
+
+                    <h3>Payment:</h3>
+                    <p>I require a 50% deposit to begin work, with the remaining 50% due upon completion before shipping.</p>
+
+                    <p class="commission-cta"><strong>Ready to get started? Please email me at <a href="mailto:your-email@example.com">your-email@example.com</a> with your ideas, and let's create something beautiful together!</strong></p>
+                </div>
+
+                <div class="commission-form">
+                    <h3>Express Your Interest</h3>
+                    <form id="commissionForm">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support Section -->
+        <section id="support" class="content-section">
+            <h2>Support My Art</h2>
+            <div class="support-content">
+                <img src="images/Birches.jpg" alt="Support artwork" class="support-image">
+
+                <div class="donation-box">
+                    <h3>☕ Buy Me a Coffee</h3>
+                    <p>If you enjoy my work and would like to support my artistic journey, I'd be incredibly grateful!</p>
+
+                    <div class="coffee-amounts">
+                        <button class="coffee-btn" onclick="setDonation(3)">1 ☕</button>
+                        <button class="coffee-btn" onclick="setDonation(9)">3 ☕</button>
+                        <button class="coffee-btn" onclick="setDonation(30)">10 ☕</button>
+                    </div>
+
+                    <form id="donationForm">
+                        <div class="form-group">
+                            <label>Amount ($)</label>
+                            <input type="number" id="donationAmount" min="1" value="3" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Your name or social media handle (optional)</label>
+                            <input type="text" id="donorName" placeholder="@yourname">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Say something nice...</label>
+                            <textarea id="donationMessage" rows="3" placeholder="Your kind words mean the world to me!"></textarea>
+                        </div>
+
+                        <button type="submit" class="donation-btn">Support with $<span id="displayAmount">3</span></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Gulnaz Khafizova. All rights reserved.</p>
+    </footer>
+
+    <!-- Modal Window -->
+    <div id="artModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img id="modalImage" src="" alt="" class="modal-image">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalDescription" class="modal-description"></p>
+                    <p id="modalDetails" class="modal-details"></p>
+                    <p id="modalPrice" class="modal-price"></p>
+
+                    <button class="add-to-cart-btn" id="addToCartBtn" onclick="addToCart()">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content cart-modal-content">
+            <span class="close-btn" onclick="closeCart()">&times;</span>
+            <h2 class="cart-title">Shopping Cart</h2>
+
+            <div id="cartItems" class="cart-items">
+                <!-- Cart items will be displayed here -->
+            </div>
+
+            <div id="emptyCartMessage" class="empty-cart">
+                Your cart is empty
+            </div>
+
+            <div id="cartSummary" class="cart-summary" style="display: none;">
+                <div class="cart-total">
+                    <strong>Total:</strong> <span id="cartTotal">0 aed.</span>
+                </div>
+
+                <h3>Checkout</h3>
+                <form id="checkoutForm">
+                    <label for="checkoutName">Your name:</label>
+                    <input type="text" id="checkoutName" required>
+
+                    <label for="checkoutEmail">Email:</label>
+                    <input type="email" id="checkoutEmail" required>
+
+                    <label for="checkoutPhone">Phone:</label>
+                    <div class="phone-input-group">
+                        <select id="countryCode" required>
+                            <option value="+971">🇦🇪 UAE (+971)</option>
+                            <option value="+1">🇺🇸 USA (+1)</option>
+                            <option value="+44">🇬🇧 UK (+44)</option>
+                            <option value="+7">🇷🇺 Russia (+7)</option>
+                            <option value="+91">🇮🇳 India (+91)</option>
+                            <option value="+86">🇨🇳 China (+86)</option>
+                            <option value="+81">🇯🇵 Japan (+81)</option>
+                            <option value="+82">🇰🇷 Korea (+82)</option>
+                            <option value="+49">🇩🇪 Germany (+49)</option>
+                            <option value="+33">🇫🇷 France (+33)</option>
+                            <option value="+39">🇮🇹 Italy (+39)</option>
+                            <option value="+34">🇪🇸 Spain (+34)</option>
+                            <option value="+61">🇦🇺 Australia (+61)</option>
+                            <option value="+55">🇧🇷 Brazil (+55)</option>
+                            <option value="+52">🇲🇽 Mexico (+52)</option>
+                            <option value="+966">🇸🇦 Saudi Arabia (+966)</option>
+                            <option value="+90">🇹🇷 Turkey (+90)</option>
+                        </select>
+                        <input type="tel" id="checkoutPhone" placeholder="123456789" pattern="[0-9]{7,15}" required>
+                    </div>
+
+                    <label for="checkoutAddress">Delivery address:</label>
+                    <textarea id="checkoutAddress" rows="3" required></textarea>
+
+                    <button type="submit" class="checkout-btn">Place Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content contact-modal-content">
+            <span class="close-btn" onclick="closeContactModal()">&times;</span>
+            <h2 class="contact-title">Get in Touch!</h2>
+            <p class="contact-intro">If you have business inquiries, comments, or questions, please fill out the form below and I will contact you shortly! You can also use this form to inquire about commissions, or if you prefer, you can email me at <a href="mailto:your-email@example.com">your-email@example.com</a> directly.</p>
+            <p class="contact-intro">I look forward to hearing from you! :) Thank you very much for visiting, shopping, and being supportive of both my work and the artistic community!</p>
+
+            <form id="contactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contactFirstName">First Name</label>
+                        <input type="text" id="contactFirstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactLastName">Last Name</label>
+                        <input type="text" id="contactLastName" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactEmail">Email</label>
+                    <input type="email" id="contactEmail" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactMessage">Message</label>
+                    <textarea id="contactMessage" rows="5" required></textarea>
+                </div>
+
+                <button type="submit" class="contact-submit-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-content about-modal-content">
+            <span class="close-btn" onclick="closeAboutModal()">&times;</span>
+
+            <div class="about-photo">
+                <img src="images/lotus.JPG" alt="Gulnaz Khafizova">
+            </div>
+
+            <h2 class="about-title">Greetings and Welcome!</h2>
+
+            <div class="about-text">
+                <p>Hello! I'm Gulnaz Khafizova, a passionate artist based in Dubai. My journey with art began in childhood, and it has grown into a lifelong love affair with colors, textures, and creative expression.</p>
+
+                <p>I specialize in acrylic, watercolor, and oil paintings, drawing inspiration from the beauty of nature, human emotions, and the vibrant world around us. Each piece I create is a reflection of my inner world and an invitation for you to experience art in your own unique way.</p>
+
+                <p>Through my work, I aim to bring joy, beauty, and meaning into people's lives. Whether it's a peaceful landscape, a vibrant still life, or a custom commission, I pour my heart into every brushstroke.</p>
+
+                <p>Thank you for taking the time to visit my gallery. I hope my art resonates with you!</p>
+            </div>
+
+            <button class="contact-me-btn" onclick="closeAboutModal(); openContactModal();">Contact Me</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
