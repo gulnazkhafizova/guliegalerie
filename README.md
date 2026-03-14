@@ -24,15 +24,15 @@ A modern, responsive artist portfolio website with integrated Google Sheets back
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/gulnazkhafizova/artsite.git
-cd artsite
+git clone https://github.com/gulnazkhafizova/guliegalerie.git
+cd guliegalerie
 ```
 
 ### 2. Configure Your Personal Information
 
 Replace all placeholder values with your actual information:
 
-#### In `artsite.html`:
+#### In `guliegalerie.html`:
 - Replace `your-email@example.com` with your email address (appears in 2 places)
 
 #### In `script.js`:
@@ -67,7 +67,7 @@ Replace all placeholder values with your actual information:
 
 1. Place your artwork images in the `images/` folder
 2. Update the `artworks` object in `script.js` with your artwork details
-3. Update the HTML sections in `artsite.html` to reference your artwork IDs
+3. Update the HTML sections in `guliegalerie.html` to reference your artwork IDs
 
 ### 5. Customize Content
 
@@ -79,11 +79,13 @@ Replace all placeholder values with your actual information:
 ## File Structure
 
 ```
-artsite/
-├── artsite.html              # Main HTML file
+guliegalerie/
+├── guliegalerie.html         # Main HTML file
 ├── script.js                 # JavaScript functionality
 ├── styles.css                # Styling and responsive design
 ├── google-apps-script.js     # Backend script for Google Sheets
+├── config.js                 # Configuration file (not in repo)
+├── config.example.js         # Configuration template
 ├── images/                   # Artwork images directory
 ├── .gitignore               # Git ignore file
 ├── README.md                # This file
@@ -123,7 +125,7 @@ The backend automatically creates the following sheets:
 
 ## Testing
 
-1. Open `artsite.html` in a web browser
+1. Open `guliegalerie.html` in a web browser
 2. Test each form:
    - Contact form
    - Store checkout

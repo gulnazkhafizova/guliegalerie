@@ -4,15 +4,15 @@
 
 // URL вашего Google Apps Script веб-приложения
 // Получить можно после развертывания скрипта в Google Apps Script
-const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxjfkxp9utWn9teTqec-ra2RrLSPI0ElhN1-u-UxEx4_FJ44R8RtamlFQiPDKnvzF33/exec';
 
 // Ваш email для контактов
-const CONTACT_EMAIL = 'your-email@example.com';
+const CONTACT_EMAIL = 'gulnazkhafizovaa@gmail.com';
 
 // Инструкции:
 // 1. Скопируйте этот файл: cp config.example.js config.js
 // 2. Откройте config.js и замените значения выше на ваши реальные данные
 // 3. Убедитесь, что config.js добавлен в .gitignore
-// 4. Подключите config.js в artsite.html перед script.js:
+// 4. Подключите config.js в guliegalerie.html перед script.js:
 //    <script src="config.js"></script>
 //    <script src="script.js"></script>

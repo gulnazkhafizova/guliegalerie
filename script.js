@@ -96,6 +96,22 @@ function showSection(sectionId) {
         targetSection.classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    // Update active state in navigation
+    document.querySelectorAll('.sidebar-nav a').forEach(link => {
+        link.classList.remove('active');
+    });
+
+    // Find and activate the clicked link
+    const activeLink = document.querySelector(`.sidebar-nav a[onclick*="'${sectionId}'"]`);
+    if (activeLink) {
+        activeLink.classList.add('active');
+    }
+}
+
+// 3DArt Object Navigation
+function show3DArtObject(objectId) {
+    showSection(`3dart-object${objectId}`);
 }
 
 // Contact Modal
@@ -120,6 +136,23 @@ function openAboutModal() {
 
 function closeAboutModal() {
     const modal = document.getElementById('aboutModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// 3D Image Modal
+function open3DImageModal(imageSrc, imageAlt) {
+    const modal = document.getElementById('image3DModal');
+    const modalImg = document.getElementById('image3DModalImg');
+
+    modal.style.display = 'flex';
+    modalImg.src = imageSrc;
+    modalImg.alt = imageAlt;
+    document.body.style.overflow = 'hidden';
+}
+
+function close3DImageModal() {
+    const modal = document.getElementById('image3DModal');
     modal.style.display = 'none';
     document.body.style.overflow = 'auto';
 }
@@ -149,8 +182,18 @@ function toggleSearch() {
 function performSearch(event) {
     const query = event.target.value.toLowerCase().trim();
 
+    // Search on Enter key or after typing (with debounce)
     if (event.key === 'Enter' && query) {
         searchArtworks(query);
+    } else if (query.length >= 2) {
+        // Debounce search while typing
+        clearTimeout(window.searchTimeout);
+        window.searchTimeout = setTimeout(() => {
+            searchArtworks(query);
+        }, 500);
+    } else if (query.length === 0) {
+        // Clear highlights when search is cleared
+        clearSearchHighlights();
     }
 }
 
@@ -160,8 +203,14 @@ function searchArtworks(query) {
 
     for (let id in artworks) {
         const artwork = artworks[id];
-        if (artwork.title.toLowerCase().includes(query) ||
-            artwork.description.toLowerCase().includes(query)) {
+        // Search in title, description, and details
+        const searchableText = [
+            artwork.title,
+            artwork.description,
+            artwork.details
+        ].join(' ').toLowerCase();
+
+        if (searchableText.includes(query)) {
             foundArtworks.push({id: id, ...artwork});
         }
     }
@@ -171,20 +220,22 @@ function searchArtworks(query) {
         showSection('store');
 
         // Highlight found artworks
-        highlightSearchResults(foundArtworks);
-
-        // Scroll to first result
         setTimeout(() => {
+            highlightSearchResults(foundArtworks);
+
+            // Scroll to first result
             const firstResult = document.querySelector('.store-item.search-highlight');
             if (firstResult) {
                 firstResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         }, 300);
+
+        // Close search bar
+        toggleSearch();
     } else {
+        // Don't close search bar on no results, let user modify query
         alert(`No artworks found for "${query}"`);
     }
-
-    toggleSearch();
 }
 
 function highlightSearchResults(foundArtworks) {
@@ -195,9 +246,17 @@ function highlightSearchResults(foundArtworks) {
     foundArtworks.forEach(artwork => {
         const storeItems = document.querySelectorAll('.store-item');
         storeItems.forEach(item => {
-            const img = item.querySelector('img');
-            if (img && img.src.includes(artwork.image.split('/').pop())) {
-                item.classList.add('search-highlight');
+            const h3 = item.querySelector('h3');
+            if (h3) {
+                const h3Title = h3.textContent.toLowerCase().trim();
+                const artworkTitle = artwork.title.toLowerCase().trim();
+
+                // Match by exact title OR if one contains the other (for cases like "Marble Canyon, Karelia" vs "Karelia")
+                if (h3Title === artworkTitle ||
+                    h3Title.includes(artworkTitle) ||
+                    artworkTitle.includes(h3Title)) {
+                    item.classList.add('search-highlight');
+                }
             }
         });
     });
@@ -445,6 +504,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    const image3DModal = document.getElementById('image3DModal');
+    image3DModal.addEventListener('click', (e) => {
+        if (e.target === image3DModal) {
+            close3DImageModal();
+        }
+    });
+
+    // Hover Wall Image Modal functionality
+    const hoverWallModal = document.getElementById('hoverWallModal');
+    const hoverWallImage = document.getElementById('hoverWallImage');
+
+    document.querySelectorAll('.art-piece[data-wall-image]').forEach(artPiece => {
+        artPiece.addEventListener('mouseenter', () => {
+            const wallImageSrc = artPiece.getAttribute('data-wall-image');
+            if (wallImageSrc) {
+                hoverWallImage.src = wallImageSrc;
+                hoverWallModal.style.display = 'block';
+            }
+        });
+
+        artPiece.addEventListener('mouseleave', () => {
+            hoverWallModal.style.display = 'none';
+            hoverWallImage.src = '';
+        });
+    });
+
+    // Close search bar when clicking outside of it
+    document.addEventListener('click', (e) => {
+        const searchBar = document.getElementById('searchBar');
+        const searchIcon = document.querySelector('.social-icon[onclick="toggleSearch()"]');
+
+        // Check if search bar is active and click was outside both search bar and search icon
+        if (searchBar.classList.contains('active') &&
+            !searchBar.contains(e.target) &&
+            !searchIcon.contains(e.target)) {
+            toggleSearch();
+        }
+    });
+
     // Close modal on Escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
@@ -452,6 +550,13 @@ document.addEventListener('DOMContentLoaded', () => {
             closeCart();
             closeContactModal();
             closeAboutModal();
+            close3DImageModal();
+
+            // Also close search bar on Escape
+            const searchBar = document.getElementById('searchBar');
+            if (searchBar.classList.contains('active')) {
+                toggleSearch();
+            }
         }
     });
 
@@ -469,9 +574,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const orderDetails = cart.map(item => `${item.title} - ${item.price}$`).join('\n');
         const total = calculateTotal();
-
-        // URL вашего Google Apps Script веб-приложения
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw1K3BxVGdG7_ptGrRiXFYo_nfEmgiH3km5m2k-ECRApg0OLIKBQb0KiC7FaodZg3yB/exec';
 
         // Показываем индикатор загрузки
         const submitBtn = checkoutForm.querySelector('.checkout-btn');
@@ -508,7 +610,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error('Error placing order:', error);
-            alert('An error occurred while placing your order. Please try again or contact us at: your-email@example.com');
+            alert(`An error occurred while placing your order. Please try again or contact us at: ${CONTACT_EMAIL}`);
         } finally {
             // Восстанавливаем кнопку
             submitBtn.textContent = originalBtnText;
@@ -525,10 +627,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const lastName = document.getElementById('contactLastName').value;
         const email = document.getElementById('contactEmail').value;
         const message = document.getElementById('contactMessage').value;
-
-        // ВАЖНО: Замените этот URL на URL вашего Google Apps Script веб-приложения
-        // После развертывания скрипта в Google Apps Script
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw1K3BxVGdG7_ptGrRiXFYo_nfEmgiH3km5m2k-ECRApg0OLIKBQb0KiC7FaodZg3yB/exec';
 
         // Показываем индикатор загрузки
         const submitBtn = contactForm.querySelector('.contact-submit-btn');
@@ -562,7 +660,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error('Error sending message:', error);
-            alert('An error occurred while sending your message. Please try again or contact me directly at: your-email@example.com');
+            alert(`An error occurred while sending your message. Please try again or contact me directly at: ${CONTACT_EMAIL}`);
         } finally {
             // Восстанавливаем кнопку
             submitBtn.textContent = originalBtnText;
@@ -576,9 +674,6 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         const email = e.target.querySelector('input[type="email"]').value;
-
-        // URL вашего Google Apps Script веб-приложения
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw1K3BxVGdG7_ptGrRiXFYo_nfEmgiH3km5m2k-ECRApg0OLIKBQb0KiC7FaodZg3yB/exec';
 
         try {
             // Отправляем данные в Google Sheets
@@ -600,7 +695,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error('Error sending request:', error);
-            alert('An error occurred. Please contact me directly at: your-email@example.com');
+            alert(`An error occurred. Please contact me directly at: ${CONTACT_EMAIL}`);
         }
     });
 
@@ -612,9 +707,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const amount = document.getElementById('donationAmount').value;
         const name = document.getElementById('donorName').value || 'Anonymous';
         const message = document.getElementById('donationMessage').value;
-
-        // URL вашего Google Apps Script веб-приложения
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw1K3BxVGdG7_ptGrRiXFYo_nfEmgiH3km5m2k-ECRApg0OLIKBQb0KiC7FaodZg3yB/exec';
 
         // Показываем индикатор загрузки
         const submitBtn = donationForm.querySelector('button[type="submit"]');
@@ -638,14 +730,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             });
 
-            alert(`Thank you so much, ${name}!\n\nYour support of $${amount} has been recorded and means the world to me!\n\n${message ? `Your message: "${message}"` : ''}\n\nNote: This records your donation intent. For actual payment, please contact me at your-email@example.com`);
+            alert(`Thank you so much, ${name}!\n\nYour support of $${amount} has been recorded and means the world to me!\n\n${message ? `Your message: "${message}"` : ''}\n\nNote: This records your donation intent. For actual payment, please contact me at ${CONTACT_EMAIL}`);
 
             donationForm.reset();
             document.getElementById('displayAmount').textContent = '3';
 
         } catch (error) {
             console.error('Error recording donation:', error);
-            alert('An error occurred while recording your donation. Please contact me directly at: your-email@example.com');
+            alert(`An error occurred while recording your donation. Please contact me directly at: ${CONTACT_EMAIL}`);
         } finally {
             // Восстанавливаем кнопку
             submitBtn.innerHTML = originalBtnText;
@@ -658,4 +750,10 @@ document.addEventListener('DOMContentLoaded', () => {
     donationAmountInput.addEventListener('input', (e) => {
         document.getElementById('displayAmount').textContent = e.target.value;
     });
+
+    // Set initial active state for Home link
+    const homeLink = document.querySelector('.sidebar-nav a[onclick*="\'home\'"]');
+    if (homeLink) {
+        homeLink.classList.add('active');
+    }
 });
