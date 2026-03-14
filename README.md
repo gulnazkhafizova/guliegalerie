@@ -4,13 +4,13 @@ A modern, responsive artist portfolio website with integrated Google Sheets back
 
 ## Features
 
-- 🎨 Portfolio galleries organized by medium (Acrylic, Watercolor, Oil) and custom collections
-- 🛒 Online store with shopping cart functionality
-- 📧 Contact form with Google Sheets integration
-- 🎯 Art commissions request system
-- 💝 Support/donations tracking
-- 📱 Fully responsive design for all devices
-- 🔍 Instagram integration
+- Portfolio galleries organized by medium (Acrylic, Watercolor, Oil) and custom collections
+- Online store with shopping cart functionality
+- Contact form with Google Sheets integration
+- Art commissions request system
+- Support/donations tracking
+- Fully responsive design for all devices
+- Instagram integration
 
 ## Technologies Used
 
