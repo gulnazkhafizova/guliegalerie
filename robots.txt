@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://gulnazkhafizova.github.io/guliegalerie/sitemap.xml
+
+# Disallow crawling of private files
+Disallow: /config.js
+Disallow: /*.log
