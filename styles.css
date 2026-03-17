@@ -1887,12 +1887,24 @@ header button:hover {
 
     /* Sidebar navigation for mobile */
     .sidebar-nav {
+        left: 0;
+        top: 0;
+        width: 280px;
+        height: 100vh;
         transform: translateX(-100%);
         transition: transform 0.3s ease;
+        z-index: 200;
+        padding-top: 80px;
+    }
+
+    .sidebar-nav:hover {
+        left: 0;
+        transform: translateX(-100%);
     }
 
     .sidebar-nav.mobile-open {
         transform: translateX(0);
+        box-shadow: var(--shadow-xl);
     }
 
     .search-bar {

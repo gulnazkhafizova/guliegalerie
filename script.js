@@ -760,7 +760,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Mobile menu toggle function
 function toggleMobileMenu(event) {
-    event.stopPropagation();
+    if (event) {
+        event.stopPropagation();
+    }
+
     const sidebar = document.querySelector('.sidebar-nav');
     const isOpen = sidebar.classList.contains('mobile-open');
 
@@ -771,7 +774,7 @@ function toggleMobileMenu(event) {
         // Добавляем обработчик с небольшой задержкой
         setTimeout(() => {
             document.addEventListener('click', closeMobileMenuOutside);
-        }, 10);
+        }, 100);
     } else {
         document.removeEventListener('click', closeMobileMenuOutside);
     }
