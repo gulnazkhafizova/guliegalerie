@@ -1975,8 +1975,30 @@ header button:hover {
 
     .portfolio-grid,
     .store-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .portfolio-item,
+    .store-item {
+        width: 100%;
+    }
+
+    .portfolio-item img,
+    .store-item img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        aspect-ratio: 1 / 1;
+    }
+
+    .store-item h3 {
+        font-size: 0.9rem;
+        margin-top: 8px;
+    }
+
+    .store-price {
+        font-size: 0.85rem;
     }
 
     .modal-content {
