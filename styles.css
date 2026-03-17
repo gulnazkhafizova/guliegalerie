@@ -1830,28 +1830,21 @@ header button:hover {
 
     header h1 {
         font-size: 1.8rem;
-        margin-bottom: 15px;
+        margin-bottom: 0;
+        margin-left: 0;
     }
 
     /* Show mobile menu button */
     .mobile-menu-btn {
         display: inline-flex;
-    }
-
-    /* Relocate header icons below the title to avoid overlap */
-    .header-icons {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
         right: 15px;
-        justify-content: flex-end;
-        margin-bottom: 0;
-        gap: 20px;
     }
 
-    /* Hide Instagram and Search icons on mobile, keep only menu button */
-    .header-icons .instagram-icon,
-    .header-icons .search-icon {
+    /* Hide desktop header icons on mobile */
+    .header-icons {
         display: none;
     }
 
