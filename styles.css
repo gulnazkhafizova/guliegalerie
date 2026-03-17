@@ -122,26 +122,36 @@ header:hover {
 .mobile-menu-btn {
     display: none;
     color: var(--text-medium);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
     align-items: center;
     justify-content: center;
     background: transparent;
     border: none;
-    padding: 1px;
+    padding: 8px;
     cursor: pointer;
-    width: 26px;
-    height: 26px;
+    width: 40px;
+    height: 40px;
+    outline: none;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 101;
 }
 
-.mobile-menu-btn:hover {
+.mobile-menu-btn:hover,
+.mobile-menu-btn:active,
+.mobile-menu-btn:focus {
     color: var(--accent-color);
-    transform: translateY(-2px) scale(1.05);
+    background: transparent;
+    border: none;
+    outline: none;
 }
 
 .mobile-menu-btn svg {
     width: 26px;
     height: 26px;
     display: block;
+    pointer-events: none;
 }
 
 /* Modern Search Bar */
@@ -1826,21 +1836,19 @@ header button:hover {
     header {
         padding: 20px 15px;
         padding-bottom: 15px;
+        justify-content: flex-start;
     }
 
     header h1 {
         font-size: 1.8rem;
         margin-bottom: 0;
         margin-left: 0;
+        margin-right: 60px;
     }
 
     /* Show mobile menu button */
     .mobile-menu-btn {
         display: inline-flex;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 15px;
     }
 
     /* Hide desktop header icons on mobile */

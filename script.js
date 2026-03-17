@@ -759,13 +759,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Mobile menu toggle function
-function toggleMobileMenu() {
+function toggleMobileMenu(event) {
+    event.stopPropagation();
     const sidebar = document.querySelector('.sidebar-nav');
+    const isOpen = sidebar.classList.contains('mobile-open');
+
     sidebar.classList.toggle('mobile-open');
 
     // Close menu when clicking outside
-    if (sidebar.classList.contains('mobile-open')) {
-        document.addEventListener('click', closeMobileMenuOutside);
+    if (!isOpen) {
+        // Добавляем обработчик с небольшой задержкой
+        setTimeout(() => {
+            document.addEventListener('click', closeMobileMenuOutside);
+        }, 10);
     } else {
         document.removeEventListener('click', closeMobileMenuOutside);
     }
