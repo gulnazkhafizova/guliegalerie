@@ -2103,3 +2103,27 @@ header button:hover {
         width: 100%;
     }
 }
+
+/* Tablets in portrait orientation (e.g., 912x1368) */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: calc(100vh - 70px);
+        padding-top: 0;
+    }
+
+    .carousel-container {
+        margin: auto;
+        margin-top: 50px;
+    }
+
+    #home {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(100vh - 70px);
+    }
+}
