@@ -1831,15 +1831,8 @@ header button:hover {
 /* Mobile devices (up to 768px) */
 @media (max-width: 768px) {
     header {
-        padding: 12px 5px;
-        justify-content: space-between;
-        flex-direction: row;
-        align-items: center;
+        padding: 12px 0;
         height: 56px;
-        position: fixed;
-        left: 0;
-        right: 0;
-        width: 100%;
     }
 
     header h1 {
@@ -1859,12 +1852,13 @@ header button:hover {
     /* Show mobile menu button on the left */
     .mobile-menu-btn {
         display: inline-flex;
-        position: relative;
+        position: absolute;
+        left: 5px;
+        top: 50%;
+        transform: translateY(-50%);
         width: clamp(32px, 8vw, 36px);
         height: clamp(32px, 8vw, 36px);
         padding: 4px;
-        flex-shrink: 0;
-        margin-left: 5px;
     }
 
     .mobile-menu-btn svg {
