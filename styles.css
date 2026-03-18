@@ -1836,7 +1836,10 @@ header button:hover {
         flex-direction: row;
         align-items: center;
         height: 56px;
-        position: relative;
+        position: fixed;
+        left: 0;
+        right: 0;
+        width: 100%;
     }
 
     header h1 {
