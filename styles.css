@@ -1871,12 +1871,14 @@ header button:hover {
 
     /* Show header icons on the right */
     .header-icons {
-        position: relative;
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
         display: flex;
         gap: clamp(4px, 1.5vw, 8px);
         margin: 0;
         flex-shrink: 0;
-        margin-right: 5px;
     }
 
     .social-icon {
