@@ -292,6 +292,49 @@ body {
     width: 40px;
 }
 
+/* Bookmark Tab for Desktop Navigation */
+.nav-bookmark {
+    position: absolute;
+    right: -50px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    transform-origin: left center;
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-bottom: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    z-index: 51;
+    box-shadow: 0 -2px 8px rgba(44, 37, 32, 0.08);
+    transition: all 0.3s ease;
+    border-radius: 0 0 8px 8px;
+}
+
+.nav-bookmark span {
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    color: var(--text-medium);
+    font-weight: 500;
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    text-transform: uppercase;
+}
+
+.nav-bookmark:hover {
+    background: var(--secondary-bg);
+    box-shadow: 0 -2px 12px rgba(44, 37, 32, 0.12);
+}
+
+.nav-bookmark:hover span {
+    color: var(--accent-color);
+    letter-spacing: 0.2em;
+}
+
+/* Open state for desktop nav */
+.sidebar-nav.desktop-open {
+    left: 0 !important;
+    box-shadow: var(--shadow-md);
+}
+
 .sidebar-nav ul {
     list-style: none;
     display: flex;
@@ -1835,6 +1878,11 @@ header button:hover {
 
     header h1 {
         font-size: clamp(1.2rem, 5vw, 2rem);
+    }
+
+    /* Hide desktop bookmark on mobile */
+    .nav-bookmark {
+        display: none;
     }
 
     /* Show mobile menu button on the left */
