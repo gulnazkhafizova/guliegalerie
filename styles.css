@@ -1831,61 +1831,63 @@ header button:hover {
 /* Mobile devices (up to 768px) */
 @media (max-width: 768px) {
     header {
-        padding: 15px 5px;
-        justify-content: center;
+        padding: 12px 5px;
+        justify-content: space-between;
         flex-direction: row;
         align-items: center;
-        height: 60px;
+        height: 56px;
         position: relative;
     }
 
     header h1 {
-        font-size: 1.3rem;
+        font-size: clamp(1rem, 4vw, 1.3rem);
         margin: 0;
         text-align: center;
         position: absolute;
         left: 50%;
-        transform: translateX(-50%);
+        top: 50%;
+        transform: translate(-50%, -50%);
         white-space: nowrap;
+        max-width: calc(100vw - 120px);
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     /* Show mobile menu button on the left */
     .mobile-menu-btn {
         display: inline-flex;
-        position: absolute;
-        left: 8px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 36px;
-        height: 36px;
-        padding: 6px;
+        position: relative;
+        width: clamp(32px, 8vw, 36px);
+        height: clamp(32px, 8vw, 36px);
+        padding: 4px;
+        flex-shrink: 0;
+        margin-left: 5px;
     }
 
     .mobile-menu-btn svg {
-        width: 22px;
-        height: 22px;
+        width: 100%;
+        height: 100%;
     }
 
     /* Show header icons on the right */
     .header-icons {
-        position: absolute;
-        right: 8px;
-        top: 50%;
-        transform: translateY(-50%);
+        position: relative;
         display: flex;
-        gap: 8px;
+        gap: clamp(4px, 1.5vw, 8px);
         margin: 0;
+        flex-shrink: 0;
+        margin-right: 5px;
     }
 
     .social-icon {
-        width: 36px;
-        height: 36px;
-        padding: 6px;
+        width: clamp(32px, 8vw, 36px);
+        height: clamp(32px, 8vw, 36px);
+        padding: 4px;
     }
 
     .social-icon svg {
-        width: 22px;
-        height: 22px;
+        width: 100%;
+        height: 100%;
     }
 
     /* Center carousel on mobile */
