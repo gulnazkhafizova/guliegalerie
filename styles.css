@@ -1811,11 +1811,6 @@ header button:hover {
 
 /* Tablets and small laptops (768px - 1024px) */
 @media (max-width: 1024px) {
-    /* Header icons repositioning */
-    .header-icons {
-        left: 30px;
-    }
-
     header {
         padding: 30px 30px;
     }
