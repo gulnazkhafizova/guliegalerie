@@ -121,6 +121,10 @@ header:hover {
 /* Mobile Menu Button */
 .mobile-menu-btn {
     display: none;
+    position: absolute;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--text-medium);
     transition: all 0.3s ease;
     align-items: center;
@@ -1831,62 +1835,32 @@ header button:hover {
 /* Mobile devices (up to 768px) */
 @media (max-width: 768px) {
     header {
-        padding: 12px 0;
-        height: 56px;
+        padding: 15px 20px;
     }
 
     header h1 {
-        font-size: clamp(1rem, 4vw, 1.3rem);
-        margin: 0;
-        text-align: center;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        white-space: nowrap;
-        max-width: calc(100vw - 120px);
-        overflow: hidden;
-        text-overflow: ellipsis;
+        font-size: clamp(1.2rem, 5vw, 2rem);
     }
 
     /* Show mobile menu button on the left */
     .mobile-menu-btn {
         display: inline-flex;
-        position: absolute;
-        left: 5px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: clamp(32px, 8vw, 36px);
-        height: clamp(32px, 8vw, 36px);
-        padding: 4px;
+        left: 20px;
     }
 
-    .mobile-menu-btn svg {
-        width: 100%;
-        height: 100%;
-    }
-
-    /* Show header icons on the right */
     .header-icons {
-        position: absolute;
-        right: 5px;
-        top: 50%;
-        transform: translateY(-50%);
-        display: flex;
-        gap: clamp(4px, 1.5vw, 8px);
-        margin: 0;
-        flex-shrink: 0;
+        right: 20px;
+        gap: 15px;
     }
 
     .social-icon {
-        width: clamp(32px, 8vw, 36px);
-        height: clamp(32px, 8vw, 36px);
-        padding: 4px;
+        width: 36px;
+        height: 36px;
     }
 
     .social-icon svg {
-        width: 100%;
-        height: 100%;
+        width: 24px;
+        height: 24px;
     }
 
     /* Center carousel on mobile */
@@ -2115,12 +2089,33 @@ header button:hover {
 
 /* Small mobile (up to 480px) */
 @media (max-width: 480px) {
+    header {
+        padding: 10px 15px;
+    }
+
     header h1 {
-        font-size: 1.5rem;
+        font-size: clamp(1rem, 5vw, 1.5rem);
+    }
+
+    .mobile-menu-btn {
+        left: 15px;
+        width: 36px;
+        height: 36px;
     }
 
     .header-icons {
-        gap: 20px;
+        right: 15px;
+        gap: 10px;
+    }
+
+    .social-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .social-icon svg {
+        width: 20px;
+        height: 20px;
     }
 
     nav ul li a {
