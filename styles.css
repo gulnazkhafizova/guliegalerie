@@ -293,55 +293,57 @@ body {
     width: 40px;
 }
 
-/* Bookmark Tab for Desktop Navigation - Book Style */
+/* Bookmark Tab for Desktop Navigation - Elegant Flag Style */
 .nav-bookmark {
     position: absolute;
-    right: -45px;
-    top: 200px;
-    width: 100px;
-    height: 35px;
-    background: linear-gradient(to right, var(--accent-color) 0%, var(--accent-light) 100%);
+    right: -18px;
+    top: 180px;
+    width: 50px;
+    height: 80px;
+    background: var(--secondary-bg);
     cursor: pointer;
     z-index: 51;
-    box-shadow: 2px 2px 8px rgba(44, 37, 32, 0.15);
+    box-shadow: 2px 0 6px rgba(44, 37, 32, 0.08);
     transition: all 0.3s ease;
-    border-radius: 0 4px 4px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-left: 3px solid var(--accent-dark);
+    border-radius: 0 3px 3px 0;
+    border: 1px solid var(--border-color);
+    border-left: none;
 }
 
 .nav-bookmark::before {
     content: '';
     position: absolute;
-    bottom: -8px;
+    bottom: 0;
     left: 0;
+    right: 0;
     width: 0;
     height: 0;
-    border-left: 22.5px solid transparent;
-    border-right: 22.5px solid transparent;
-    border-top: 8px solid var(--accent-light);
+    margin: 0 auto;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-top: 12px solid var(--secondary-bg);
+    filter: drop-shadow(0 2px 2px rgba(44, 37, 32, 0.08));
+}
+
+.nav-bookmark::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 12px;
+    background: var(--border-color);
 }
 
 .nav-bookmark span {
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    color: var(--white);
-    font-weight: 600;
-    font-family: 'Helvetica Neue', 'Arial', sans-serif;
-    text-transform: uppercase;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
 }
 
 .nav-bookmark:hover {
-    right: -42px;
-    box-shadow: 3px 3px 12px rgba(44, 37, 32, 0.25);
-    background: linear-gradient(to right, var(--accent-light) 0%, var(--accent-color) 100%);
-}
-
-.nav-bookmark:hover span {
-    letter-spacing: 0.15em;
+    background: var(--primary-bg);
+    box-shadow: 2px 0 10px rgba(44, 37, 32, 0.12);
+    right: -15px;
 }
 
 /* Open state for desktop nav */
