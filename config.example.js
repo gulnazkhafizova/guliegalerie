@@ -4,10 +4,10 @@
 
 // URL вашего Google Apps Script веб-приложения
 // Получить можно после развертывания скрипта в Google Apps Script
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxjfkxp9utWn9teTqec-ra2RrLSPI0ElhN1-u-UxEx4_FJ44R8RtamlFQiPDKnvzF33/exec';
+const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
 
 // Ваш email для контактов
-const CONTACT_EMAIL = 'gulnazkhafizovaa@gmail.com';
+const CONTACT_EMAIL = 'your-email@example.com';
 
 // Инструкции:
 // 1. Скопируйте этот файл: cp config.example.js config.js
