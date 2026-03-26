@@ -262,12 +262,21 @@ body {
     width: 280px;
     background: var(--white);
     border-right: 1px solid var(--border-color);
-    padding: 10px 0;
-    overflow-y: auto;
-    overflow-x: visible;
+    overflow: visible;
     z-index: 50;
     box-shadow: none;
     transition: left 0.3s ease;
+}
+
+.nav-scroll {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    overflow-x: visible;
+    padding: 10px 0;
 }
 
 .sidebar-nav:hover {
@@ -275,65 +284,37 @@ body {
     box-shadow: var(--shadow-md);
 }
 
-/* Trigger area for sidebar - minimal */
-.sidebar-nav::before {
-    content: '';
-    position: fixed;
-    left: 0;
-    top: 140px;
-    bottom: 0;
-    width: 40px;
-    z-index: -1;
-    background: transparent;
-    transition: var(--transition-smooth);
-}
-
-.sidebar-nav:hover::before {
-    background: transparent;
-    width: 40px;
-}
-
-/* Bookmark Tab for Desktop Navigation - Elegant Flag Style */
+/* Bookmark Tab for Desktop Navigation - Flag pointing right */
 .nav-bookmark {
     position: absolute;
-    right: -18px;
-    top: 180px;
-    width: 50px;
-    height: 80px;
+    right: -40px;
+    top: 160px;
+    width: 40px;
+    height: 72px;
     background: var(--secondary-bg);
-    cursor: pointer;
-    z-index: 51;
-    box-shadow: 2px 0 6px rgba(44, 37, 32, 0.08);
-    transition: all 0.3s ease;
-    border-radius: 0 3px 3px 0;
     border: 1px solid var(--border-color);
     border-left: none;
+    cursor: pointer;
+    z-index: 52;
+    transition: background 0.3s ease;
+    clip-path: polygon(0 0, 72% 0, 100% 50%, 72% 100%, 0 100%);
 }
 
 .nav-bookmark::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 0;
-    height: 0;
-    margin: 0 auto;
-    border-left: 25px solid transparent;
-    border-right: 25px solid transparent;
-    border-top: 12px solid var(--secondary-bg);
-    filter: drop-shadow(0 2px 2px rgba(44, 37, 32, 0.08));
+    content: none;
 }
 
 .nav-bookmark::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    height: 12px;
-    background: var(--border-color);
+    top: 50%;
+    left: 8px;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid var(--text-light);
+    border-right: 2px solid var(--text-light);
+    transform: translateY(-50%) rotate(45deg);
+    transition: all 0.3s ease;
 }
 
 .nav-bookmark span {
@@ -341,9 +322,20 @@ body {
 }
 
 .nav-bookmark:hover {
-    background: var(--primary-bg);
-    box-shadow: 2px 0 10px rgba(44, 37, 32, 0.12);
-    right: -15px;
+    background: var(--accent-color);
+}
+
+.nav-bookmark:hover::after {
+    border-color: var(--white);
+}
+
+.sidebar-nav.desktop-open .nav-bookmark {
+    background: var(--accent-color);
+}
+
+.sidebar-nav.desktop-open .nav-bookmark::after {
+    border-color: var(--white);
+    transform: translateY(-50%) rotate(225deg);
 }
 
 /* Open state for desktop nav */

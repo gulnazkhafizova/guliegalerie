@@ -187,8 +187,8 @@ function performSearch(event) {
         searchArtworks(query);
     } else if (query.length >= 2) {
         // Debounce search while typing
-        clearTimeout(window.searchTimeout);
-        window.searchTimeout = setTimeout(() => {
+        clearTimeout(/** @type {any} */(window).searchTimeout);
+        /** @type {any} */(window).searchTimeout = setTimeout(() => {
             searchArtworks(query);
         }, 500);
     } else if (query.length === 0) {
@@ -636,7 +636,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // Отправляем данные в Google Sheets
-            const response = await fetch(GOOGLE_SCRIPT_URL, {
+            await fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors', // Важно для Google Apps Script
                 headers: {
@@ -790,36 +790,31 @@ function closeMobileMenuOutside(event) {
     }
 }
 
-// Toggle desktop navigation menu
-function toggleDesktopNav(event) {
-    if (event) {
-        event.stopPropagation();
+// Desktop navigation hover behavior
+(function initDesktopNav() {
+    let closeTimer = null;
+
+    function openDesktopNav() {
+        clearTimeout(closeTimer);
+        document.querySelector('.sidebar-nav').classList.add('desktop-open');
     }
 
-    const sidebar = document.querySelector('.sidebar-nav');
-    const isOpen = sidebar.classList.contains('desktop-open');
-
-    sidebar.classList.toggle('desktop-open');
-
-    // Close menu when clicking outside
-    if (!isOpen) {
-        setTimeout(() => {
-            document.addEventListener('click', closeDesktopNavOutside);
-        }, 100);
-    } else {
-        document.removeEventListener('click', closeDesktopNavOutside);
+    function scheduleCloseDesktopNav() {
+        closeTimer = setTimeout(() => {
+            document.querySelector('.sidebar-nav').classList.remove('desktop-open');
+        }, 200);
     }
-}
 
-function closeDesktopNavOutside(event) {
-    const sidebar = document.querySelector('.sidebar-nav');
-    const bookmark = document.querySelector('.nav-bookmark');
+    document.addEventListener('DOMContentLoaded', function() {
+        const sidebar = document.querySelector('.sidebar-nav');
+        const bookmark = document.querySelector('.nav-bookmark');
 
-    if (!sidebar.contains(event.target) && !bookmark.contains(event.target)) {
-        sidebar.classList.remove('desktop-open');
-        document.removeEventListener('click', closeDesktopNavOutside);
-    }
-}
+        bookmark.addEventListener('mouseenter', openDesktopNav);
+        sidebar.addEventListener('mouseenter', openDesktopNav);
+        sidebar.addEventListener('mouseleave', scheduleCloseDesktopNav);
+        bookmark.addEventListener('mouseleave', scheduleCloseDesktopNav);
+    });
+})()
 
 // Close mobile and desktop menu when a menu item is clicked
 document.addEventListener('DOMContentLoaded', function() {
@@ -833,7 +828,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             if (sidebar.classList.contains('desktop-open')) {
                 sidebar.classList.remove('desktop-open');
-                document.removeEventListener('click', closeDesktopNavOutside);
             }
         });
     });
