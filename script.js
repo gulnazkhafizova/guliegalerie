@@ -1,3 +1,31 @@
+// Toast notifications
+function showToast(title, message, type = 'success', duration = 5000) {
+    let container = document.getElementById('toastContainer');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'toastContainer';
+        container.className = 'toast-container';
+        document.body.appendChild(container);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.innerHTML = `
+        <div class="toast-title">${title}</div>
+        ${message ? `<div class="toast-message">${message}</div>` : ''}
+    `;
+    container.appendChild(toast);
+
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => toast.classList.add('toast-show'));
+    });
+
+    setTimeout(() => {
+        toast.classList.remove('toast-show');
+        setTimeout(() => toast.remove(), 300);
+    }, duration);
+}
+
 // Данные о картинах
 const artworks = {
     1: {
@@ -234,7 +262,7 @@ function searchArtworks(query) {
         toggleSearch();
     } else {
         // Don't close search bar on no results, let user modify query
-        alert(`No artworks found for "${query}"`);
+        showToast('Not found', `No artworks found for "${query}"`, 'info');
     }
 }
 
@@ -331,7 +359,7 @@ function addToCart() {
     // Check if item already in cart
     const existingItem = cart.find(item => item.id === currentArtId);
     if (existingItem) {
-        alert('This artwork is already in your cart!');
+        showToast('Already in cart', 'This artwork is already in your cart.', 'info');
         return;
     }
 
@@ -344,7 +372,7 @@ function addToCart() {
 
     updateCartCount();
     closeModal();
-    alert('Artwork added to cart!');
+    showToast('Added to cart', 'The artwork has been added to your cart.');
 }
 
 function removeFromCart(artId) {
@@ -600,7 +628,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             });
 
-            alert(`Thank you, ${name}!\n\nYour order has been placed:\n\n${orderDetails}\n\nTotal: ${total}$\n\nWe will contact you at ${email} or ${phone} for delivery to:\n${address}`);
+            showToast(`Thank you, ${name}!`, `Your order has been placed.\nTotal: ${total}$\n\nWe will contact you at ${email}.`);
 
             // Clear cart
             cart = [];
@@ -610,7 +638,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error('Error placing order:', error);
-            alert(`An error occurred while placing your order. Please try again or contact us at: ${CONTACT_EMAIL}`);
+            showToast('Error', `An error occurred. Please try again or contact us at: ${CONTACT_EMAIL}`, 'error');
         } finally {
             // Восстанавливаем кнопку
             submitBtn.textContent = originalBtnText;
@@ -653,14 +681,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // При использовании mode: 'no-cors' мы не можем прочитать ответ,
             // но если не было ошибки при отправке, считаем что данные отправлены
-            alert(`Thank you, ${firstName} ${lastName}!\n\nYour message has been sent. I will contact you at ${email} shortly.`);
+            showToast(`Thank you, ${firstName}!`, `Your message has been sent.\nI will contact you at ${email} shortly.`);
 
             contactForm.reset();
             closeContactModal();
 
         } catch (error) {
             console.error('Error sending message:', error);
-            alert(`An error occurred while sending your message. Please try again or contact me directly at: ${CONTACT_EMAIL}`);
+            showToast('Error', `An error occurred. Please contact me directly at: ${CONTACT_EMAIL}`, 'error');
         } finally {
             // Восстанавливаем кнопку
             submitBtn.textContent = originalBtnText;
@@ -689,13 +717,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             });
 
-            alert(`Thank you for your interest!\n\nI will contact you at ${email} to discuss your commission ideas.`);
+            showToast('Thank you for your interest!', `I will contact you at ${email} to discuss your commission ideas.`);
 
             commissionForm.reset();
 
         } catch (error) {
             console.error('Error sending request:', error);
-            alert(`An error occurred. Please contact me directly at: ${CONTACT_EMAIL}`);
+            showToast('Error', `Please contact me directly at: ${CONTACT_EMAIL}`, 'error');
         }
     });
 
@@ -730,14 +758,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             });
 
-            alert(`Thank you so much, ${name}!\n\nYour support of $${amount} has been recorded and means the world to me!\n\n${message ? `Your message: "${message}"` : ''}\n\nNote: This records your donation intent. For actual payment, please contact me at ${CONTACT_EMAIL}`);
+            showToast(`Thank you, ${name}!`, `Your support of $${amount} means the world to me!\n${message ? `"${message}"` : ''}`);
 
             donationForm.reset();
             document.getElementById('displayAmount').textContent = '3';
 
         } catch (error) {
             console.error('Error recording donation:', error);
-            alert(`An error occurred while recording your donation. Please contact me directly at: ${CONTACT_EMAIL}`);
+            showToast('Error', `Please contact me directly at: ${CONTACT_EMAIL}`, 'error');
         } finally {
             // Восстанавливаем кнопку
             submitBtn.innerHTML = originalBtnText;
