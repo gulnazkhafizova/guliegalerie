@@ -14,7 +14,7 @@
 // 12. Скопируйте URL веб-приложения (он будет нужен для сайта)
 
 // НАСТРОЙКИ
-var SPREADSHEET_ID = 'YOUR_SPREADSHEET_ID'; // ЗАМЕНИТЕ на ID вашей таблицы
+var SPREADSHEET_ID = '1Mc_1yX7iSrZhqSASQ7S8SOYNTQlBiSztr3-Cp_LUiUM'; // ЗАМЕНИТЕ на ID вашей таблицы
 
 function doPost(e) {
   try {
