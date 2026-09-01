@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gulie Galerie — Gulnaz Khafizova, Contemporary Artist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --paper: #EAE6DC;
+    --paper-deep: #DED7C7;
+    --ink: #201D18;
+    --ink-soft: #55503F;
+    --green: #2B4030;
+    --green-deep: #1B2A20;
+    --ochre: #B07F2E;
+    --wine: #7C3230;
+    --line: #C9BFA9;
+    --paper-on-dark: #EFE9DA;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    margin:0;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  button{font-family:inherit; cursor:pointer;}
+
+  ::selection{background:var(--ochre); color:var(--paper);}
+
+  :focus-visible{
+    outline:2px solid var(--wine);
+    outline-offset:3px;
+  }
+
+  .wrap{
+    max-width:1240px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.site{
+    position:sticky; top:0; z-index:100;
+    background:rgba(234,230,220,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:18px; padding-bottom:18px;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:22px;
+    font-style:italic;
+    font-weight:500;
+  }
+  .logo span{font-style:normal; font-weight:400; color:var(--ink-soft); font-size:13px; display:block; font-family:'Work Sans',sans-serif; margin-top:-2px;}
+  .nav-links{
+    display:flex; gap:36px; align-items:center;
+    font-size:15px;
+  }
+  .nav-links a{
+    position:relative; padding:4px 0;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; right:0; bottom:-2px; height:1px;
+    background:var(--wine); transform:scaleX(0); transform-origin:left;
+    transition:transform .25s ease;
+  }
+  .nav-links a:hover::after{transform:scaleX(1);}
+  .nav-right{display:flex; align-items:center; gap:22px;}
+  .icon-btn{width:20px; height:20px; display:flex; align-items:center; justify-content:center; color:var(--ink); background:none; border:none; padding:0;}
+  .cart-btn{
+    position:relative; display:flex; align-items:center; gap:7px;
+    background:none; border:none; color:var(--ink); font-size:15px; padding:0;
+  }
+  .cart-btn svg{width:20px; height:20px;}
+  .cart-count{
+    min-width:19px; height:19px; padding:0 5px; border-radius:10px;
+    background:var(--wine); color:var(--paper-on-dark);
+    font-size:12px; line-height:19px; text-align:center; font-family:'Work Sans',sans-serif;
+  }
+  .menu-toggle{display:none; background:none; border:none; padding:6px;}
+  .menu-toggle svg{width:22px; height:22px;}
+
+  @media (max-width: 860px){
+    .nav-links{
+      position:fixed; inset:64px 0 0 0; background:var(--paper);
+      flex-direction:column; align-items:flex-start; gap:0;
+      padding:12px 32px 32px; transform:translateY(-8px); opacity:0; pointer-events:none;
+      transition:opacity .2s ease, transform .2s ease;
+      font-size:19px;
+    }
+    .nav-links a{padding:14px 0; width:100%; border-bottom:1px solid var(--line);}
+    .nav-links.open{opacity:1; pointer-events:auto; transform:translateY(0);}
+    .menu-toggle{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    min-height:88vh;
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .hero-image{
+    position:relative;
+    background:#000;
+  }
+  .hero-image img{
+    width:100%; height:100%; object-fit:cover; object-position:center 30%;
+    opacity:0.94;
+  }
+  .hero-label{
+    position:absolute; left:24px; bottom:24px;
+    color:var(--paper-on-dark);
+    font-size:13px;
+    background:rgba(20,18,14,0.45);
+    padding:8px 14px;
+    backdrop-filter:blur(3px);
+  }
+  .hero-label strong{font-family:'Fraunces',serif; font-style:italic; font-weight:500; display:block; font-size:15px;}
+
+  .hero-text{
+    display:flex; flex-direction:column; justify-content:center;
+    padding:64px 56px;
+    background:var(--paper);
+  }
+  .hero-eyebrow{
+    color:var(--ink-soft); font-size:15px; margin-bottom:18px;
+  }
+  .hero-text h1{
+    font-size:clamp(34px, 4.2vw, 54px);
+    line-height:1.08;
+    max-width:11ch;
+    opacity:0; transform:translateY(14px);
+    animation: rise .8s ease forwards .1s;
+  }
+  .hero-text p.lede{
+    margin-top:24px; max-width:42ch; color:var(--ink-soft); font-size:17px;
+    opacity:0; transform:translateY(14px);
+    animation: rise .8s ease forwards .3s;
+  }
+  .hero-ctas{
+    margin-top:34px; display:flex; gap:16px; flex-wrap:wrap;
+    opacity:0; transform:translateY(14px);
+    animation: rise .8s ease forwards .45s;
+  }
+  @keyframes rise{ to{opacity:1; transform:translateY(0);} }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 26px;
+    font-size:15px;
+    border:1px solid var(--ink);
+    background:transparent;
+    color:var(--ink);
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .btn:hover{background:var(--ink); color:var(--paper);}
+  .btn.solid{background:var(--wine); border-color:var(--wine); color:var(--paper-on-dark);}
+  .btn.solid:hover{background:#611f1e; border-color:#611f1e;}
+  .btn:disabled{opacity:0.6; cursor:not-allowed;}
+
+  @media (max-width: 860px){
+    .hero{grid-template-columns:1fr; min-height:auto;}
+    .hero-image{height:52vh;}
+    .hero-text{padding:44px 24px 56px;}
+    .hero-text h1{max-width:none;}
+  }
+
+  /* ---------- SECTION GENERICS ---------- */
+  section{padding:96px 0;}
+  .section-head{
+    display:flex; align-items:flex-end; justify-content:space-between; gap:24px;
+    margin-bottom:48px; flex-wrap:wrap;
+    border-bottom:1px solid var(--line);
+    padding-bottom:20px;
+  }
+  .section-head h2{font-size:clamp(28px,3vw,38px); font-style:italic; max-width:16ch;}
+  .section-head p{color:var(--ink-soft); max-width:36ch; font-size:15px;}
+
+  /* ---------- ABOUT STRIP ---------- */
+  .about-strip{
+    display:grid; grid-template-columns: 0.85fr 1.15fr; gap:64px; align-items:center;
+    padding:88px 0;
+  }
+  .about-strip figure{margin:0; position:relative;}
+  .about-strip img{width:100%; aspect-ratio:4/5; object-fit:cover; filter:saturate(0.92);}
+  .about-strip .frame-note{
+    position:absolute; bottom:-18px; right:-18px; background:var(--paper);
+    border:1px solid var(--line); padding:10px 16px; font-size:13px; color:var(--ink-soft);
+  }
+  .about-copy p.quote{
+    font-family:'Fraunces', serif; font-style:italic; font-weight:400;
+    font-size:clamp(22px,2.4vw,30px); line-height:1.35; color:var(--green-deep);
+    margin-bottom:28px;
+  }
+  .about-copy p{font-size:16px; color:var(--ink-soft); max-width:56ch; margin:0 0 16px;}
+  .about-copy .signoff{margin-top:24px; font-family:'Fraunces',serif; font-style:italic; font-size:18px; color:var(--ink);}
+
+  @media (max-width: 860px){
+    .about-strip{grid-template-columns:1fr; gap:36px;}
+  }
+
+  /* ---------- GALLERY FILTER + GRID ---------- */
+  .filters{
+    display:flex; gap:10px; flex-wrap:wrap; margin-bottom:44px;
+  }
+  .filter-btn{
+    padding:9px 18px; border:1px solid var(--line); background:transparent;
+    font-size:14px; color:var(--ink-soft); transition:all .2s ease;
+  }
+  .filter-btn.active, .filter-btn:hover{
+    border-color:var(--ink); color:var(--ink); background:var(--paper-deep);
+  }
+
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    gap:6px;
+  }
+  .art-card{
+    position:relative;
+    overflow:hidden;
+    background:var(--paper-deep);
+    cursor:pointer;
+  }
+  .art-card img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition:transform .5s ease;
+  }
+  .art-card:hover img{transform:scale(1.045);}
+  .art-card .cap{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:16px 16px 14px;
+    background:linear-gradient(to top, rgba(16,14,10,0.78), rgba(16,14,10,0));
+    color:var(--paper-on-dark);
+    transform:translateY(8px); opacity:0;
+    transition:transform .25s ease, opacity .25s ease;
+  }
+  .art-card:hover .cap{transform:translateY(0); opacity:1;}
+  .cap h4{font-size:16px; color:var(--paper-on-dark); font-style:italic;}
+  .cap .meta{font-size:12.5px; color:#D8D0BE; margin-top:3px;}
+
+  .art-card.c1{grid-column:span 3; aspect-ratio:4/5;}
+  .art-card.c2{grid-column:span 3; aspect-ratio:4/5;}
+  .art-card.wide{grid-column:span 4; aspect-ratio:16/10;}
+  .art-card.tall{grid-column:span 2; aspect-ratio:3/5;}
+  .art-card.sq{grid-column:span 2; aspect-ratio:1/1;}
+
+  @media (max-width: 860px){
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .art-card.c1,.art-card.c2,.art-card.wide,.art-card.tall,.art-card.sq{grid-column:span 1; aspect-ratio:4/5;}
+  }
+
+  .hidden-item{display:none;}
+
+  /* ---------- FEATURED COLLECTION (dark) ---------- */
+  .collection-feature{
+    background:var(--green-deep);
+    color:var(--paper-on-dark);
+  }
+  .collection-feature .section-head{border-color:rgba(239,233,218,0.2);}
+  .collection-feature .section-head h2{color:var(--paper-on-dark);}
+  .collection-feature .section-head p{color:#C7C0AC;}
+  .collection-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:16px;
+  }
+  .collection-grid .art-card img{width:100%; aspect-ratio:4/5; object-fit:cover; filter:saturate(0.85) brightness(0.95);}
+  .collection-copy{margin-top:28px; max-width:60ch; color:#CFC8B4; font-size:16px;}
+  @media (max-width:700px){ .collection-grid{grid-template-columns:1fr;} }
+
+  /* ---------- COMMISSIONS ---------- */
+  .commission-wrap{
+    display:grid; grid-template-columns:1fr 1fr; gap:64px;
+  }
+  .steps{list-style:none; margin:32px 0 0; padding:0;}
+  .steps li{
+    display:grid; grid-template-columns:34px 1fr; gap:16px; margin-bottom:26px;
+  }
+  .steps .num{
+    font-family:'Fraunces',serif; font-style:italic; color:var(--ochre); font-size:20px;
+  }
+  .steps h4{font-size:17px; margin-bottom:4px;}
+  .steps p{margin:0; color:var(--ink-soft); font-size:15px;}
+  .price-note{
+    margin-top:28px; padding:18px 20px; border-left:2px solid var(--ochre);
+    background:var(--paper-deep); font-size:14.5px; color:var(--ink-soft);
+  }
+  .commission-form{
+    margin-top:28px; display:flex; gap:12px; flex-wrap:wrap;
+  }
+  .commission-form input{
+    flex:1; min-width:200px; padding:13px 16px; font-size:15px; font-family:inherit;
+    border:1px solid var(--line); background:var(--paper); color:var(--ink);
+  }
+  @media (max-width:860px){ .commission-wrap{grid-template-columns:1fr; gap:36px;} }
+
+  /* ---------- SUPPORT STRIP ---------- */
+  .support{
+    display:flex; align-items:center; justify-content:space-between; gap:24px;
+    background:var(--paper-deep); padding:40px 48px; flex-wrap:wrap;
+  }
+  .support h3{font-size:22px; font-style:italic; max-width:26ch;}
+  .support p{color:var(--ink-soft); font-size:15px; margin-top:6px; max-width:44ch;}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{
+    background:var(--ink);
+    color:var(--paper-on-dark);
+    padding:80px 0 32px;
+  }
+  .contact-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:64px;
+  }
+  footer h2{color:var(--paper-on-dark); font-style:italic; font-size:clamp(28px,3vw,36px); max-width:14ch;}
+  footer p{color:#C7C1AF; font-size:15.5px; max-width:48ch; margin-top:18px;}
+  .contact-links{margin-top:32px; display:flex; flex-direction:column; gap:14px; font-size:16px;}
+  .contact-links a, .contact-links button.linklike{
+    border-bottom:1px solid rgba(239,233,218,0.3); padding:0 0 2px; width:fit-content;
+    background:none; border-top:none; border-left:none; border-right:none;
+    color:inherit; font-size:16px; font-family:inherit; text-align:left;
+  }
+  .contact-links a:hover, .contact-links button.linklike:hover{border-color:var(--ochre); color:var(--ochre);}
+  .footer-note{
+    border-top:1px solid rgba(239,233,218,0.15); margin-top:64px; padding-top:24px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    font-size:13px; color:#948E7C;
+  }
+  @media (max-width:860px){ .contact-grid{grid-template-columns:1fr; gap:36px;} }
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{
+    position:fixed; inset:0; background:rgba(14,12,9,0.92);
+    display:none; align-items:center; justify-content:center;
+    z-index:1000; padding:40px;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox-inner{max-width:900px; max-height:86vh; text-align:center;}
+  .lightbox-inner img{max-height:66vh; margin:0 auto; box-shadow:0 20px 60px rgba(0,0,0,0.5);}
+  .lightbox-cap{color:var(--paper-on-dark); margin-top:18px;}
+  .lightbox-cap h4{color:var(--paper-on-dark); font-style:italic; font-size:20px;}
+  .lightbox-cap p{color:#C7C1AF; font-size:14px; margin-top:4px;}
+  .lightbox-cap .add-btn{margin-top:16px;}
+  .lightbox-close{
+    position:absolute; top:28px; right:32px; background:none; border:none;
+    color:var(--paper-on-dark); font-size:28px; line-height:1;
+  }
+
+  /* ---------- MODAL (cart / contact) ---------- */
+  .modal{
+    position:fixed; inset:0; background:rgba(14,12,9,0.85);
+    display:none; align-items:flex-start; justify-content:center;
+    z-index:1100; padding:40px 20px; overflow-y:auto;
+  }
+  .modal.open{display:flex;}
+  .modal-panel{
+    background:var(--paper); width:100%; max-width:540px; padding:40px;
+    position:relative; border:1px solid var(--line); margin:auto 0;
+  }
+  .modal-panel h2{font-style:italic; font-size:26px; margin-bottom:8px;}
+  .modal-panel p.intro{color:var(--ink-soft); font-size:15px; margin:0 0 24px; max-width:none;}
+  .modal-close{
+    position:absolute; top:18px; right:20px; background:none; border:none;
+    color:var(--ink); font-size:26px; line-height:1;
+  }
+  .modal-panel label{display:block; font-size:14px; color:var(--ink-soft); margin:14px 0 6px;}
+  .modal-panel input, .modal-panel textarea, .modal-panel select{
+    width:100%; padding:12px 14px; font-size:15px; font-family:inherit;
+    border:1px solid var(--line); background:#fff; color:var(--ink);
+  }
+  .modal-panel textarea{resize:vertical;}
+  .form-row{display:flex; gap:16px;}
+  .form-row > div{flex:1;}
+  .phone-group{display:flex; gap:10px;}
+  .phone-group select{flex:0 0 auto; width:auto;}
+  .phone-group input{flex:1;}
+  .modal-panel button.submit{margin-top:26px; width:100%; justify-content:center;}
+
+  /* Cart items */
+  .cart-items{display:flex; flex-direction:column; gap:14px; margin-bottom:8px;}
+  .cart-item{
+    display:flex; align-items:center; gap:14px;
+    border-bottom:1px solid var(--line); padding-bottom:14px;
+  }
+  .cart-item img{width:64px; height:64px; object-fit:cover; flex:0 0 auto;}
+  .cart-item-info{flex:1;}
+  .cart-item-title{font-family:'Fraunces',serif; font-style:italic; font-size:16px;}
+  .cart-item-price{color:var(--ink-soft); font-size:14px; margin-top:2px;}
+  .cart-item-remove{
+    background:none; border:1px solid var(--line); color:var(--ink-soft);
+    font-size:13px; padding:6px 12px; transition:all .2s ease;
+  }
+  .cart-item-remove:hover{border-color:var(--wine); color:var(--wine);}
+  .empty-cart{color:var(--ink-soft); font-size:15px; padding:20px 0;}
+  .cart-total{
+    font-size:18px; margin:20px 0 4px; display:flex; justify-content:space-between;
+    font-family:'Fraunces',serif;
+  }
+
+  /* ---------- TOASTS ---------- */
+  .toast-container{
+    position:fixed; bottom:24px; right:24px; z-index:2000;
+    display:flex; flex-direction:column; gap:12px; max-width:340px;
+  }
+  .toast{
+    background:var(--ink); color:var(--paper-on-dark);
+    padding:16px 20px; border-left:3px solid var(--ochre);
+    box-shadow:0 12px 30px rgba(0,0,0,0.25);
+    opacity:0; transform:translateX(20px); transition:opacity .3s ease, transform .3s ease;
+  }
+  .toast.toast-show{opacity:1; transform:translateX(0);}
+  .toast-success{border-left-color:var(--green);}
+  .toast-error{border-left-color:var(--wine);}
+  .toast-info{border-left-color:var(--ochre);}
+  .toast-title{font-family:'Fraunces',serif; font-style:italic; font-size:16px;}
+  .toast-message{font-size:13.5px; color:#C7C1AF; margin-top:4px; white-space:pre-line;}
+
+  @media (max-width:520px){
+    .toast-container{left:16px; right:16px; max-width:none;}
+    .form-row{flex-direction:column; gap:0;}
+    .modal-panel{padding:32px 22px;}
+  }
+
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="wrap">
+    <a href="#top" class="logo">Gulie Galerie<span>Gulnaz Khafizova</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#gallery">Gallery</a>
+      <a href="#collection">Collections</a>
+      <a href="#commissions">Commissions</a>
+      <a href="#about">About</a>
+      <a href="#" id="contactNavLink">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a class="icon-btn" href="https://www.instagram.com/gulie_bulie" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+      </a>
+      <button class="cart-btn" id="cartOpen" aria-label="Open cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3h2.2l2.3 12.2a1.6 1.6 0 0 0 1.6 1.3h8.8a1.6 1.6 0 0 0 1.6-1.3L21 7H6"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<div id="top"></div>
+
+<section class="hero" style="padding:0;">
+  <div class="hero-image">
+    <img src="images/Birches.jpg" alt="Birches, an acrylic landscape painting by Gulnaz Khafizova">
+    <div class="hero-label"><strong>Birches</strong>Acrylic on canvas</div>
+  </div>
+  <div class="hero-text">
+    <p class="hero-eyebrow">An independent studio in Dubai</p>
+    <h1>Paintings made to be lived with</h1>
+    <p class="lede">Gulnaz Khafizova paints landscapes, still life and portraits in acrylic, watercolor and oil — each piece built slowly, by hand, for a home rather than a wall label.</p>
+    <div class="hero-ctas">
+      <a href="#gallery" class="btn solid">View the gallery</a>
+      <a href="#commissions" class="btn">Commission a piece</a>
+    </div>
+  </div>
+</section>
+
+<section class="about-strip wrap" id="about">
+  <figure>
+    <img src="images/lotus.JPG" alt="Lotus, a watercolor study by Gulnaz Khafizova">
+    <div class="frame-note">Lotus, watercolor</div>
+  </figure>
+  <div class="about-copy">
+    <p class="quote">"Each piece is a reflection of my inner world, and an invitation for you to see it in your own way."</p>
+    <p>I'm Gulnaz — a painter based in Dubai. Art has followed me since childhood, growing from a habit into the way I make sense of colour, light and everything I notice around me.</p>
+    <p>I work mainly in acrylic, watercolor and oil, drawing from landscapes, quiet still life and the occasional strange idea that refuses to stay abstract. Every canvas starts as a feeling before it becomes a picture.</p>
+    <p class="signoff">— Gulnaz Khafizova</p>
+  </div>
+</section>
+
+<section id="gallery" class="wrap">
+  <div class="section-head">
+    <h2>The gallery</h2>
+    <p>Original works available now, organised by medium. Click any piece for a closer look — and add available works to your cart.</p>
+  </div>
+
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">All work</button>
+    <button class="filter-btn" data-filter="acrylic">Acrylic</button>
+    <button class="filter-btn" data-filter="watercolor">Watercolor</button>
+    <button class="filter-btn" data-filter="oil">Oil</button>
+    <button class="filter-btn" data-filter="3d">3D objects</button>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+
+    <div class="art-card c1" data-cat="acrylic" data-id="1" data-title="Birches" data-medium="Acrylic on canvas" data-price="$355" data-img="images/Birches.jpg">
+      <img src="images/Birches.jpg" alt="Birches, acrylic painting">
+      <div class="cap"><h4>Birches</h4><p class="meta">Acrylic on canvas · $355</p></div>
+    </div>
+
+    <div class="art-card wide" data-cat="oil" data-id="4" data-title="Horses" data-medium="Oil on canvas" data-price="$550" data-img="images/horses.jpeg">
+      <img src="images/horses.jpeg" alt="Horses, oil painting">
+      <div class="cap"><h4>Horses</h4><p class="meta">Oil on canvas · $550</p></div>
+    </div>
+
+    <div class="art-card tall" data-cat="watercolor" data-title="Deep in the Forest" data-medium="Watercolor" data-price="Price on request" data-img="images/Deep_in_the_forest.JPG">
+      <img src="images/Deep_in_the_forest.JPG" alt="Deep in the Forest, watercolor painting">
+      <div class="cap"><h4>Deep in the Forest</h4><p class="meta">Watercolor</p></div>
+    </div>
+
+    <div class="art-card sq" data-cat="acrylic" data-id="10" data-title="Lilies" data-medium="Acrylic on canvas" data-price="$200" data-img="images/Lilies.jpg">
+      <img src="images/Lilies.jpg" alt="Lilies, acrylic painting">
+      <div class="cap"><h4>Lilies</h4><p class="meta">Acrylic on canvas · $200</p></div>
+    </div>
+
+    <div class="art-card sq" data-cat="oil" data-id="2" data-title="Fresh Air" data-medium="Oil on canvas" data-price="$250" data-img="images/fresh_air.jpg">
+      <img src="images/fresh_air.jpg" alt="Fresh Air, oil painting">
+      <div class="cap"><h4>Fresh Air</h4><p class="meta">Oil on canvas · $250</p></div>
+    </div>
+
+    <div class="art-card c2" data-cat="oil" data-title="Bouquet" data-medium="Oil on canvas" data-price="Price on request" data-img="images/honey_fields_gift.jpg">
+      <img src="images/honey_fields_gift.jpg" alt="Bouquet, oil painting">
+      <div class="cap"><h4>Bouquet</h4><p class="meta">Oil on canvas</p></div>
+    </div>
+
+    <div class="art-card tall" data-cat="oil" data-title="Roses" data-medium="Oil on canvas" data-price="Price on request" data-img="images/roses.jpeg">
+      <img src="images/roses.jpeg" alt="Roses, oil painting">
+      <div class="cap"><h4>Roses</h4><p class="meta">Oil on canvas</p></div>
+    </div>
+
+    <div class="art-card wide" data-cat="acrylic" data-id="12" data-title="Marble Canyon, Karelia" data-medium="Acrylic on canvas" data-price="$200" data-img="images/MarbleCanyonKarelia.jpg">
+      <img src="images/MarbleCanyonKarelia.jpg" alt="Marble Canyon, Karelia, acrylic painting">
+      <div class="cap"><h4>Marble Canyon, Karelia</h4><p class="meta">Acrylic on canvas · $200</p></div>
+    </div>
+
+    <div class="art-card sq" data-cat="acrylic" data-id="11" data-title="Sri Lanka" data-medium="Acrylic on canvas" data-price="$130" data-img="images/SriLanka.jpg">
+      <img src="images/SriLanka.jpg" alt="Sri Lanka, acrylic painting">
+      <div class="cap"><h4>Sri Lanka</h4><p class="meta">Acrylic on canvas · $130</p></div>
+    </div>
+
+    <div class="art-card sq" data-cat="watercolor" data-title="Mosaic" data-medium="Watercolor" data-price="Price on request" data-img="images/mosaic.JPG">
+      <img src="images/mosaic.JPG" alt="Mosaic, watercolor painting">
+      <div class="cap"><h4>Mosaic</h4><p class="meta">Watercolor</p></div>
+    </div>
+
+    <div class="art-card c1" data-cat="oil" data-title="Tangerines" data-medium="Oil on canvas" data-price="Price on request" data-img="images/Tangerines.jpg">
+      <img src="images/Tangerines.jpg" alt="Tangerines, oil painting">
+      <div class="cap"><h4>Tangerines</h4><p class="meta">Oil on canvas</p></div>
+    </div>
+
+    <div class="art-card c2" data-cat="3d" data-title="Matryoshka" data-medium="Mixed media, 3D object" data-price="Price on request" data-img="images/3Dmatreshka_01.jpg">
+      <img src="images/3Dmatreshka_01.jpg" alt="Matryoshka, a 3D carnival doll art object">
+      <div class="cap"><h4>Matryoshka</h4><p class="meta">Carnival doll, Russian folk style</p></div>
+    </div>
+
+  </div>
+</section>
+
+<section class="collection-feature" id="collection">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Not what it seems</h2>
+      <p>A quieter, stranger series — open to whatever the viewer brings to it.</p>
+    </div>
+    <div class="collection-grid">
+      <div class="art-card" data-id="13" data-title="01" data-medium="Acrylic on canvas" data-price="$300" data-img="images/01.jpg">
+        <img src="images/01.jpg" alt="Untitled 01, from the Not What It Seems collection">
+      </div>
+      <div class="art-card" data-id="14" data-title="02" data-medium="Acrylic on canvas" data-price="$300" data-img="images/02.jpg">
+        <img src="images/02.jpg" alt="Untitled 02, from the Not What It Seems collection">
+      </div>
+    </div>
+    <p class="collection-copy">No two viewers read these paintings the same way — that's deliberate. The subject shifts depending on how long you look, and what you look for.</p>
+  </div>
+</section>
+
+<section id="commissions" class="wrap">
+  <div class="commission-wrap">
+    <div>
+      <div class="section-head" style="border:none; padding-bottom:0; margin-bottom:0;">
+        <h2>Custom commissions</h2>
+      </div>
+      <p style="color:var(--ink-soft); margin-top:20px; max-width:52ch;">
+        A portrait, a landscape from your own photos, or something more abstract — I work closely with you from the first sketch to the final coat of varnish.
+      </p>
+      <ol class="steps">
+        <li><span class="num">1</span><div><h4>Share your idea</h4><p>Send reference photos, a mood, or just a rough sense of what you're picturing.</p></div></li>
+        <li><span class="num">2</span><div><h4>I paint, you follow along</h4><p>Most commissions take 2–4 weeks depending on size and detail. I'll send progress photos as the piece develops.</p></div></li>
+        <li><span class="num">3</span><div><h4>Final review and delivery</h4><p>Once you approve the finished piece, it's carefully packed and shipped to you.</p></div></li>
+      </ol>
+      <div class="price-note">A 50% deposit begins the work; the remaining balance is due on completion, before shipping.</div>
+      <form class="commission-form" id="commissionForm">
+        <input type="email" name="email" placeholder="Your email" required>
+        <button type="submit" class="btn solid">Start a commission</button>
+      </form>
+    </div>
+    <div>
+      <img src="images/roses.jpeg" alt="Example of commissioned oil painting work" style="width:100%; aspect-ratio:4/5; object-fit:cover;">
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="support">
+    <div>
+      <h3>Enjoying the work?</h3>
+      <p>If a painting made you stop scrolling for a second, you can help keep the studio running with a small tip.</p>
+    </div>
+    <a href="https://www.instagram.com/gulie_bulie" target="_blank" rel="noopener" class="btn">☕ Buy me a coffee</a>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <h2>Let's talk about art</h2>
+      <p>Questions about a piece, shipping, or a commission — send a note and I'll reply personally, usually within a couple of days.</p>
+    </div>
+    <div class="contact-links">
+      <button type="button" class="linklike" id="contactFooterLink">Send a message</button>
+      <a href="mailto:gulnazkhafizovaa@gmail.com">gulnazkhafizovaa@gmail.com</a>
+      <a href="https://www.instagram.com/gulie_bulie" target="_blank" rel="noopener">@gulie_bulie on Instagram</a>
+      <a href="#gallery">Browse the current gallery</a>
+    </div>
+  </div>
+  <div class="wrap footer-note">
+    <span>© 2026 Gulnaz Khafizova. All rights reserved.</span>
+    <span>Dubai, UAE</span>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <div class="lightbox-inner">
+    <img id="lightboxImg" src="" alt="">
+    <div class="lightbox-cap">
+      <h4 id="lightboxTitle"></h4>
+      <p id="lightboxMeta"></p>
+      <button class="btn solid add-btn" id="lightboxAdd" style="display:none;">Add to cart</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cart Modal -->
+<div class="modal" id="cartModal">
+  <div class="modal-panel">
+    <button class="modal-close" id="cartClose" aria-label="Close">&times;</button>
+    <h2>Your cart</h2>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="empty-cart" id="emptyCartMessage">Your cart is empty.</div>
+    <div id="cartSummary" style="display:none;">
+      <div class="cart-total"><span>Total</span><span id="cartTotal">$0</span></div>
+      <h2 style="margin-top:28px; font-size:20px;">Checkout</h2>
+      <form id="checkoutForm">
+        <label for="checkoutName">Your name</label>
+        <input type="text" id="checkoutName" required>
+
+        <label for="checkoutEmail">Email</label>
+        <input type="email" id="checkoutEmail" required>
+
+        <label for="checkoutPhone">Phone</label>
+        <div class="phone-group">
+          <select id="countryCode" required>
+            <option value="+971">🇦🇪 +971</option>
+            <option value="+1">🇺🇸 +1</option>
+            <option value="+44">🇬🇧 +44</option>
+            <option value="+7">🇷🇺 +7</option>
+            <option value="+91">🇮🇳 +91</option>
+            <option value="+86">🇨🇳 +86</option>
+            <option value="+49">🇩🇪 +49</option>
+            <option value="+33">🇫🇷 +33</option>
+            <option value="+34">🇪🇸 +34</option>
+            <option value="+39">🇮🇹 +39</option>
+            <option value="+61">🇦🇺 +61</option>
+            <option value="+966">🇸🇦 +966</option>
+            <option value="+90">🇹🇷 +90</option>
+          </select>
+          <input type="tel" id="checkoutPhone" placeholder="123456789" pattern="[0-9]{7,15}" required>
+        </div>
+
+        <label for="checkoutAddress">Delivery address</label>
+        <textarea id="checkoutAddress" rows="3" required></textarea>
+
+        <button type="submit" class="btn solid submit checkout-btn">Place order</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Contact Modal -->
+<div class="modal" id="contactModal">
+  <div class="modal-panel">
+    <button class="modal-close" id="contactClose" aria-label="Close">&times;</button>
+    <h2>Get in touch</h2>
+    <p class="intro">Questions about a piece, shipping, or a commission — leave a note and I'll reply personally. You can also email me directly at
+      <a href="mailto:gulnazkhafizovaa@gmail.com" style="border-bottom:1px solid var(--wine);">gulnazkhafizovaa@gmail.com</a>.</p>
+    <form id="contactForm">
+      <div class="form-row">
+        <div>
+          <label for="contactFirstName">First name</label>
+          <input type="text" id="contactFirstName" required>
+        </div>
+        <div>
+          <label for="contactLastName">Last name</label>
+          <input type="text" id="contactLastName" required>
+        </div>
+      </div>
+      <label for="contactEmail">Email</label>
+      <input type="email" id="contactEmail" required>
+
+      <label for="contactMessage">Message</label>
+      <textarea id="contactMessage" rows="5" required></textarea>
+
+      <button type="submit" class="btn solid submit contact-submit-btn">Send message</button>
+    </form>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script>
+  // ---------- Config fallback ----------
+  // config.js defines GOOGLE_SCRIPT_URL and CONTACT_EMAIL. Fall back gracefully if missing.
+  const SCRIPT_URL = (typeof GOOGLE_SCRIPT_URL !== 'undefined') ? GOOGLE_SCRIPT_URL : '';
+  const MAIL = (typeof CONTACT_EMAIL !== 'undefined') ? CONTACT_EMAIL : 'gulnazkhafizovaa@gmail.com';
+
+  // ---------- Toast notifications ----------
+  function showToast(title, message, type = 'success', duration = 5000) {
+    let container = document.getElementById('toastContainer');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'toastContainer';
+      container.className = 'toast-container';
+      document.body.appendChild(container);
+    }
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    const titleEl = document.createElement('div');
+    titleEl.className = 'toast-title';
+    titleEl.textContent = title;
+    toast.appendChild(titleEl);
+    if (message) {
+      const msgEl = document.createElement('div');
+      msgEl.className = 'toast-message';
+      msgEl.textContent = message;
+      toast.appendChild(msgEl);
+    }
+    container.appendChild(toast);
+    requestAnimationFrame(() => requestAnimationFrame(() => toast.classList.add('toast-show')));
+    setTimeout(() => {
+      toast.classList.remove('toast-show');
+      setTimeout(() => toast.remove(), 300);
+    }, duration);
+  }
+
+  // ---------- Mobile nav ----------
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // ---------- Gallery filter ----------
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const galleryCards = document.querySelectorAll('#galleryGrid .art-card');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      galleryCards.forEach(card => {
+        card.classList.toggle('hidden-item', f !== 'all' && card.dataset.cat !== f);
+      });
+    });
+  });
+
+  // ---------- Lightbox ----------
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxMeta = document.getElementById('lightboxMeta');
+  const lightboxAdd = document.getElementById('lightboxAdd');
+  let currentItem = null; // { id, title, image, price }
+
+  function parsePrice(str) {
+    if (!str) return null;
+    const m = String(str).replace(/,/g, '').match(/\d+(\.\d+)?/);
+    return m ? parseFloat(m[0]) : null;
+  }
+
+  document.querySelectorAll('.art-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const price = parsePrice(card.dataset.price);
+      lightboxImg.src = card.dataset.img;
+      lightboxImg.alt = card.dataset.title || '';
+      lightboxTitle.textContent = card.dataset.title || '';
+      lightboxMeta.textContent = [card.dataset.medium, card.dataset.price].filter(Boolean).join(' · ');
+
+      // Only show "Add to cart" for priced items that have an id
+      if (card.dataset.id && price !== null) {
+        currentItem = {
+          id: card.dataset.id,
+          title: card.dataset.title,
+          image: card.dataset.img,
+          price: price
+        };
+        lightboxAdd.style.display = 'inline-flex';
+      } else {
+        currentItem = null;
+        lightboxAdd.style.display = 'none';
+      }
+      lightbox.classList.add('open');
+    });
+  });
+  document.getElementById('lightboxClose').addEventListener('click', () => lightbox.classList.remove('open'));
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('open'); });
+
+  lightboxAdd.addEventListener('click', () => {
+    if (currentItem) {
+      addToCart(currentItem);
+      lightbox.classList.remove('open');
+    }
+  });
+
+  // ---------- Cart ----------
+  let cart = [];
+  const cartModal = document.getElementById('cartModal');
+  const cartCountEl = document.getElementById('cartCount');
+  const cartItemsEl = document.getElementById('cartItems');
+  const emptyCartMessage = document.getElementById('emptyCartMessage');
+  const cartSummary = document.getElementById('cartSummary');
+  const cartTotalEl = document.getElementById('cartTotal');
+
+  function updateCartCount() { cartCountEl.textContent = cart.length; }
+  function calculateTotal() { return cart.reduce((t, i) => t + i.price, 0); }
+
+  function addToCart(item) {
+    if (cart.some(i => i.id === item.id)) {
+      showToast('Already in cart', 'This artwork is already in your cart.', 'info');
+      return;
+    }
+    cart.push(item);
+    updateCartCount();
+    showToast('Added to cart', `"${item.title}" has been added to your cart.`);
+  }
+
+  function removeFromCart(id) {
+    cart = cart.filter(i => i.id !== id);
+    updateCartCount();
+    renderCart();
+  }
+
+  function renderCart() {
+    if (cart.length === 0) {
+      cartItemsEl.innerHTML = '';
+      emptyCartMessage.style.display = 'block';
+      cartSummary.style.display = 'none';
+      return;
+    }
+    emptyCartMessage.style.display = 'none';
+    cartSummary.style.display = 'block';
+    cartItemsEl.innerHTML = '';
+    cart.forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'cart-item';
+      const img = document.createElement('img');
+      img.src = item.image; img.alt = item.title;
+      const info = document.createElement('div');
+      info.className = 'cart-item-info';
+      const title = document.createElement('div');
+      title.className = 'cart-item-title'; title.textContent = item.title;
+      const price = document.createElement('div');
+      price.className = 'cart-item-price'; price.textContent = `$${item.price}`;
+      info.appendChild(title); info.appendChild(price);
+      const remove = document.createElement('button');
+      remove.className = 'cart-item-remove'; remove.textContent = 'Remove';
+      remove.addEventListener('click', () => removeFromCart(item.id));
+      row.appendChild(img); row.appendChild(info); row.appendChild(remove);
+      cartItemsEl.appendChild(row);
+    });
+    cartTotalEl.textContent = `$${calculateTotal()}`;
+  }
+
+  function openCart() {
+    renderCart();
+    cartModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCart() {
+    cartModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('cartOpen').addEventListener('click', openCart);
+  document.getElementById('cartClose').addEventListener('click', closeCart);
+  cartModal.addEventListener('click', (e) => { if (e.target === cartModal) closeCart(); });
+
+  // ---------- Contact modal ----------
+  const contactModal = document.getElementById('contactModal');
+  function openContact(e) { if (e) e.preventDefault(); contactModal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeContact() { contactModal.classList.remove('open'); document.body.style.overflow = ''; }
+  document.getElementById('contactNavLink').addEventListener('click', openContact);
+  document.getElementById('contactFooterLink').addEventListener('click', openContact);
+  document.getElementById('contactClose').addEventListener('click', closeContact);
+  contactModal.addEventListener('click', (e) => { if (e.target === contactModal) closeContact(); });
+
+  // ---------- Escape closes everything ----------
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      lightbox.classList.remove('open');
+      closeCart();
+      closeContact();
+    }
+  });
+
+  // ---------- Google Sheets submit helper ----------
+  async function postToSheet(payload) {
+    if (!SCRIPT_URL) throw new Error('No script URL configured');
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  }
+
+  // ---------- Checkout form ----------
+  document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const name = document.getElementById('checkoutName').value;
+    const email = document.getElementById('checkoutEmail').value;
+    const phone = `${document.getElementById('countryCode').value} ${document.getElementById('checkoutPhone').value}`;
+    const address = document.getElementById('checkoutAddress').value;
+    const orderDetails = cart.map(i => `${i.title} - $${i.price}`).join('\n');
+    const total = calculateTotal();
+
+    const btn = form.querySelector('.checkout-btn');
+    const original = btn.textContent;
+    btn.textContent = 'Placing order...';
+    btn.disabled = true;
+    try {
+      await postToSheet({ formType: 'order', name, email, phone, address, orderDetails, total });
+      showToast(`Thank you, ${name}!`, `Your order has been placed.\nTotal: $${total}\n\nWe will contact you at ${email}.`);
+      cart = [];
+      updateCartCount();
+      form.reset();
+      closeCart();
+    } catch (err) {
+      console.error('Error placing order:', err);
+      showToast('Error', `An error occurred. Please try again or contact us at ${MAIL}`, 'error');
+    } finally {
+      btn.textContent = original;
+      btn.disabled = false;
+    }
+  });
+
+  // ---------- Contact form ----------
+  document.getElementById('contactForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const firstName = document.getElementById('contactFirstName').value;
+    const lastName = document.getElementById('contactLastName').value;
+    const email = document.getElementById('contactEmail').value;
+    const message = document.getElementById('contactMessage').value;
+
+    const btn = form.querySelector('.contact-submit-btn');
+    const original = btn.textContent;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    try {
+      await postToSheet({ formType: 'contact', firstName, lastName, email, message });
+      showToast(`Thank you, ${firstName}!`, `Your message has been sent.\nI will contact you at ${email} shortly.`);
+      form.reset();
+      closeContact();
+    } catch (err) {
+      console.error('Error sending message:', err);
+      showToast('Error', `An error occurred. Please contact me directly at ${MAIL}`, 'error');
+    } finally {
+      btn.textContent = original;
+      btn.disabled = false;
+    }
+  });
+
+  // ---------- Commission form ----------
+  document.getElementById('commissionForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const email = form.querySelector('input[type="email"]').value;
+    const btn = form.querySelector('button[type="submit"]');
+    const original = btn.textContent;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    try {
+      await postToSheet({ formType: 'commission', email });
+      showToast('Thank you for your interest!', `I will contact you at ${email} to discuss your commission ideas.`);
+      form.reset();
+    } catch (err) {
+      console.error('Error sending request:', err);
+      showToast('Error', `Please contact me directly at ${MAIL}`, 'error');
+    } finally {
+      btn.textContent = original;
+      btn.disabled = false;
+    }
+  });
+</script>
+
+</body>
+</html>
