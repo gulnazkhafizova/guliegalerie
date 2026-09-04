@@ -244,19 +244,25 @@
     border-color:var(--ink); color:var(--ink); background:var(--paper-deep);
   }
 
+  /* Masonry gallery: each work shown whole in its own proportion */
   .gallery-grid{
-    display:grid;
-    grid-template-columns:repeat(6, 1fr);
-    gap:6px;
+    column-count:3;
+    column-gap:14px;
   }
   .art-card{
     position:relative;
     overflow:hidden;
     background:var(--paper-deep);
     cursor:pointer;
+    display:block;
+    width:100%;
+    margin:0 0 14px;
+    break-inside:avoid;          /* keep each card in one column */
+    -webkit-column-break-inside:avoid;
+    box-shadow:0 1px 2px rgba(20,18,14,0.06);
   }
   .art-card img{
-    width:100%; height:100%; object-fit:cover; display:block;
+    width:100%; height:auto; display:block;   /* natural aspect ratio, no crop */
     transition:transform .5s ease;
   }
   .art-card:hover img{transform:scale(1.045);}
@@ -272,15 +278,11 @@
   .cap h4{font-size:16px; color:var(--paper-on-dark); font-style:italic;}
   .cap .meta{font-size:12.5px; color:#D8D0BE; margin-top:3px;}
 
-  .art-card.c1{grid-column:span 3; aspect-ratio:4/5;}
-  .art-card.c2{grid-column:span 3; aspect-ratio:4/5;}
-  .art-card.wide{grid-column:span 4; aspect-ratio:16/10;}
-  .art-card.tall{grid-column:span 2; aspect-ratio:3/5;}
-  .art-card.sq{grid-column:span 2; aspect-ratio:1/1;}
-
-  @media (max-width: 860px){
-    .gallery-grid{grid-template-columns:repeat(2,1fr);}
-    .art-card.c1,.art-card.c2,.art-card.wide,.art-card.tall,.art-card.sq{grid-column:span 1; aspect-ratio:4/5;}
+  @media (max-width: 1024px){
+    .gallery-grid{column-count:2;}
+  }
+  @media (max-width: 560px){
+    .gallery-grid{column-count:1;}
   }
 
   .hidden-item{display:none;}
@@ -294,9 +296,10 @@
   .collection-feature .section-head h2{color:var(--paper-on-dark);}
   .collection-feature .section-head p{color:#C7C0AC;}
   .collection-grid{
-    display:grid; grid-template-columns:1fr 1fr; gap:16px;
+    display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start;
   }
-  .collection-grid .art-card img{width:100%; aspect-ratio:4/5; object-fit:cover; filter:saturate(0.85) brightness(0.95);}
+  .collection-grid .art-card{margin:0;}
+  .collection-grid .art-card img{width:100%; height:auto; filter:saturate(0.85) brightness(0.95);}
   .collection-copy{margin-top:28px; max-width:60ch; color:#CFC8B4; font-size:16px;}
   @media (max-width:700px){ .collection-grid{grid-template-columns:1fr;} }
 
@@ -528,64 +531,72 @@
 
   <div class="gallery-grid" id="galleryGrid">
 
-    <div class="art-card c1" data-cat="acrylic" data-id="1" data-title="Birches" data-medium="Acrylic on canvas" data-price="$355" data-img="images/Birches.jpg">
+    <div class="art-card" data-cat="acrylic" data-id="1" data-title="Birches" data-medium="Acrylic on canvas" data-price="$355" data-img="images/Birches.jpg">
       <img src="images/Birches.jpg" alt="Birches, acrylic painting">
       <div class="cap"><h4>Birches</h4><p class="meta">Acrylic on canvas · $355</p></div>
     </div>
 
-    <div class="art-card wide" data-cat="oil" data-id="4" data-title="Horses" data-medium="Oil on canvas" data-price="$550" data-img="images/horses.jpeg">
+    <div class="art-card" data-cat="oil" data-id="4" data-title="Horses" data-medium="Oil on canvas" data-price="$550" data-img="images/horses.jpeg">
       <img src="images/horses.jpeg" alt="Horses, oil painting">
       <div class="cap"><h4>Horses</h4><p class="meta">Oil on canvas · $550</p></div>
     </div>
 
-    <div class="art-card tall" data-cat="watercolor" data-title="Deep in the Forest" data-medium="Watercolor" data-price="Price on request" data-img="images/Deep_in_the_forest.JPG">
+    <div class="art-card" data-cat="watercolor" data-title="Deep in the Forest" data-medium="Watercolor" data-price="Price on request" data-img="images/Deep_in_the_forest.JPG">
       <img src="images/Deep_in_the_forest.JPG" alt="Deep in the Forest, watercolor painting">
       <div class="cap"><h4>Deep in the Forest</h4><p class="meta">Watercolor</p></div>
     </div>
 
-    <div class="art-card sq" data-cat="acrylic" data-id="10" data-title="Lilies" data-medium="Acrylic on canvas" data-price="$200" data-img="images/Lilies.jpg">
+    <div class="art-card" data-cat="acrylic" data-id="10" data-title="Lilies" data-medium="Acrylic on canvas" data-price="$200" data-img="images/Lilies.jpg">
       <img src="images/Lilies.jpg" alt="Lilies, acrylic painting">
       <div class="cap"><h4>Lilies</h4><p class="meta">Acrylic on canvas · $200</p></div>
     </div>
 
-    <div class="art-card sq" data-cat="oil" data-id="2" data-title="Fresh Air" data-medium="Oil on canvas" data-price="$250" data-img="images/fresh_air.jpg">
+    <div class="art-card" data-cat="oil" data-id="2" data-title="Fresh Air" data-medium="Oil on canvas" data-price="$250" data-img="images/fresh_air.jpg">
       <img src="images/fresh_air.jpg" alt="Fresh Air, oil painting">
       <div class="cap"><h4>Fresh Air</h4><p class="meta">Oil on canvas · $250</p></div>
     </div>
 
-    <div class="art-card c2" data-cat="oil" data-title="Bouquet" data-medium="Oil on canvas" data-price="Price on request" data-img="images/honey_fields_gift.jpg">
+    <div class="art-card" data-cat="oil" data-title="Bouquet" data-medium="Oil on canvas" data-price="Price on request" data-img="images/honey_fields_gift.jpg">
       <img src="images/honey_fields_gift.jpg" alt="Bouquet, oil painting">
       <div class="cap"><h4>Bouquet</h4><p class="meta">Oil on canvas</p></div>
     </div>
 
-    <div class="art-card tall" data-cat="oil" data-title="Roses" data-medium="Oil on canvas" data-price="Price on request" data-img="images/roses.jpeg">
+    <div class="art-card" data-cat="oil" data-title="Roses" data-medium="Oil on canvas" data-price="Price on request" data-img="images/roses.jpeg">
       <img src="images/roses.jpeg" alt="Roses, oil painting">
       <div class="cap"><h4>Roses</h4><p class="meta">Oil on canvas</p></div>
     </div>
 
-    <div class="art-card wide" data-cat="acrylic" data-id="12" data-title="Marble Canyon, Karelia" data-medium="Acrylic on canvas" data-price="$200" data-img="images/MarbleCanyonKarelia.jpg">
+    <div class="art-card" data-cat="acrylic" data-id="12" data-title="Marble Canyon, Karelia" data-medium="Acrylic on canvas" data-price="$200" data-img="images/MarbleCanyonKarelia.jpg">
       <img src="images/MarbleCanyonKarelia.jpg" alt="Marble Canyon, Karelia, acrylic painting">
       <div class="cap"><h4>Marble Canyon, Karelia</h4><p class="meta">Acrylic on canvas · $200</p></div>
     </div>
 
-    <div class="art-card sq" data-cat="acrylic" data-id="11" data-title="Sri Lanka" data-medium="Acrylic on canvas" data-price="$130" data-img="images/SriLanka.jpg">
+    <div class="art-card" data-cat="acrylic" data-id="11" data-title="Sri Lanka" data-medium="Acrylic on canvas" data-price="$130" data-img="images/SriLanka.jpg">
       <img src="images/SriLanka.jpg" alt="Sri Lanka, acrylic painting">
       <div class="cap"><h4>Sri Lanka</h4><p class="meta">Acrylic on canvas · $130</p></div>
     </div>
 
-    <div class="art-card sq" data-cat="watercolor" data-title="Sri Lankan Rock" data-medium="Watercolor" data-price="Price on request" data-img="images/SriLankanRock.jpg">
+    
+    <div class="art-card" data-cat="watercolor" data-title="Sri Lankan Rock" data-medium="Watercolor" data-price="Price on request" data-img="images/SriLankanRock.jpg">
       <img src="images/SriLankanRock.jpg" alt="Sri Lankan Rock, watercolor painting">
       <div class="cap"><h4>Sri Lankan Rock</h4><p class="meta">Watercolor</p></div>
     </div>
 
-    <div class="art-card c1" data-cat="oil" data-title="Tangerines" data-medium="Oil on canvas" data-price="Price on request" data-img="images/Tangerines.jpg">
+    <div class="art-card" data-cat="oil" data-title="Tangerines" data-medium="Oil on canvas" data-price="Price on request" data-img="images/Tangerines.jpg">
       <img src="images/Tangerines.jpg" alt="Tangerines, oil painting">
       <div class="cap"><h4>Tangerines</h4><p class="meta">Oil on canvas</p></div>
     </div>
 
-    <div class="art-card c2" data-cat="3d" data-title="Matryoshka" data-medium="Mixed media, 3D object" data-price="Price on request" data-img="images/3Dmatreshka_01.jpg">
+    <div class="art-card" data-cat="3d" data-title="Matryoshka" data-medium="Mixed media, 3D object" data-price="Price on request" data-img="images/3Dmatreshka_01.jpg">
+
+
       <img src="images/3Dmatreshka_01.jpg" alt="Matryoshka, a 3D carnival doll art object">
       <div class="cap"><h4>Matryoshka</h4><p class="meta">Carnival doll, Russian folk style</p></div>
+    </div>
+
+    <div class="art-card" data-cat="acrylic" data-title="Grapes" data-medium="Acrylic on canvas" data-img="images/Grapes.jpg">
+      <img src="images/Grapes.jpg" alt="Grapes, acrylic painting">
+      <div class="cap"><h4>Grapes</h4><p class="meta">Acrylic on canvas</p></div>
     </div>
 
   </div>
