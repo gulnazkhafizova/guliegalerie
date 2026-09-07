@@ -596,7 +596,7 @@
       <div class="cap"><h4>Horses</h4><p class="meta">Oil on canvas · $550</p></div>
     </div>
 
-    <div class="art-card" data-cat="watercolor" data-title="Deep in the Forest" data-medium="Watercolor" data-price="Price on request" data-img="images/Deep_in_the_forest.JPG">
+    <div class="art-card hidden-item" data-hide-in-all data-cat="watercolor" data-title="Deep in the Forest" data-medium="Watercolor" data-price="Price on request" data-img="images/Deep_in_the_forest.JPG">
       <img src="images/Deep_in_the_forest.JPG" alt="Deep in the Forest, watercolor painting">
       <div class="cap"><h4>Deep in the Forest</h4><p class="meta">Watercolor</p></div>
     </div>
@@ -611,9 +611,9 @@
       <div class="cap"><h4>Fresh Air</h4><p class="meta">Oil on canvas · $250</p></div>
     </div>
 
-    <div class="art-card" data-cat="oil" data-title="Bouquet" data-medium="Oil on canvas" data-price="Price on request" data-img="images/honey_fields_gift.jpg">
+    <div class="art-card" data-cat="oil" data-title="Bouquet" data-medium="Oil on cardboard" data-price="Price on request" data-img="images/honey_fields_gift.jpg">
       <img src="images/honey_fields_gift.jpg" alt="Bouquet, oil painting">
-      <div class="cap"><h4>Bouquet</h4><p class="meta">Oil on canvas</p></div>
+      <div class="cap"><h4>Bouquet</h4><p class="meta">Oil on cardboard</p></div>
     </div>
 
     <div class="art-card" data-cat="oil" data-title="Roses" data-medium="Oil on canvas" data-price="Price on request" data-img="images/roses.jpeg">
@@ -632,14 +632,14 @@
     </div>
 
     
-    <div class="art-card" data-cat="watercolor" data-title="Sri Lankan Rock" data-medium="Watercolor" data-price="Price on request" data-img="images/SriLankanRock.jpg">
+    <div class="art-card hidden-item" data-hide-in-all data-cat="watercolor" data-title="Sri Lankan Rock" data-medium="Watercolor" data-price="Price on request" data-img="images/SriLankanRock.jpg">
       <img src="images/SriLankanRock.jpg" alt="Sri Lankan Rock, watercolor painting">
       <div class="cap"><h4>Sri Lankan Rock</h4><p class="meta">Watercolor</p></div>
     </div>
 
-    <div class="art-card" data-cat="oil" data-title="Tangerines" data-medium="Oil on canvas" data-price="Price on request" data-img="images/Tangerines.jpg">
+    <div class="art-card" data-cat="oil" data-title="Tangerines" data-medium="Oil on cardboard" data-price="Price on request" data-img="images/Tangerines.jpg">
       <img src="images/Tangerines.jpg" alt="Tangerines, oil painting">
-      <div class="cap"><h4>Tangerines</h4><p class="meta">Oil on canvas</p></div>
+      <div class="cap"><h4>Tangerines</h4><p class="meta">Oil on cardboard</p></div>
     </div>
 
     <div class="art-card" data-cat="3d" data-title="Matryoshka" data-medium="Mixed media, 3D object" data-price="Price on request" data-img="images/3Dmatreshka_01.jpg">
@@ -868,7 +868,10 @@
       btn.classList.add('active');
       const f = btn.dataset.filter;
       galleryCards.forEach(card => {
-        card.classList.toggle('hidden-item', f !== 'all' && card.dataset.cat !== f);
+        const hide = f === 'all'
+          ? card.hasAttribute('data-hide-in-all')   // "All work" hides opted-out cards (watercolor)
+          : card.dataset.cat !== f;
+        card.classList.toggle('hidden-item', hide);
       });
     });
   });
