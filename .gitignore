@@ -4,3 +4,4 @@ node_modules/
 dist/
 .env
 images/_originals_backup/
+_favicon_backup/
