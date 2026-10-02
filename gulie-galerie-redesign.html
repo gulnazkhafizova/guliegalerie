@@ -175,7 +175,10 @@
       transition:opacity .2s ease, transform .2s ease;
       font-size:19px;
     }
-    .nav-links a{padding:14px 0; width:100%; border-bottom:1px solid var(--line);}
+    .nav-links a{
+      padding:14px 0; width:100%; border-bottom:1px solid var(--line);
+      background:rgba(234,230,220,0.5);   /* semi-transparent row background so text stays readable */
+    }
     .nav-links.open{opacity:1; pointer-events:auto; transform:translateY(0);}
     .menu-toggle{display:block;}
   }
